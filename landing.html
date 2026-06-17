@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flexible Programs | Authentic Intelligence LLC</title>
+  <meta name="description" content="No retainer required. Get expert communications support on your terms — On Call Subscription or Executive Visibility Sprint." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: #2D3142; background: #fff; line-height: 1.6; }
+
+    :root {
+      --green:   #98c739;
+      --teal:    #00A5A8;
+      --blue:    #4A86C8;
+      --magenta: #C8357A;
+      --dark:    #2D3142;
+      --light:   #F7F8F5;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Kanit', Georgia, serif; line-height: 1.15; font-weight: 600; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.97);
+      border-bottom: 2px solid var(--green);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+      backdrop-filter: blur(6px);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { height: 36px; width: auto; }
+    .nav-back {
+      font-family: 'Kanit', sans-serif;
+      font-size: 0.85rem; font-weight: 500;
+      color: var(--dark); text-decoration: none;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 0.4rem;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--green); }
+    .nav-cta-link {
+      background: var(--green); color: #fff;
+      padding: 0.45rem 1.1rem; border-radius: 4px;
+      font-size: 0.85rem; font-weight: 600; text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-cta-link:hover { background: #82ac2f; }
+
+    /* ── HERO ── */
+    .lp-hero {
+      min-height: 52vh;
+      background: linear-gradient(135deg, var(--dark) 0%, #1a1f36 60%, #0d2a2a 100%);
+      display: flex; align-items: center;
+      padding: 120px 0 80px;
+      position: relative; overflow: hidden;
+    }
+    .lp-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 700px 400px at 90% 20%, rgba(152,199,57,0.15) 0%, transparent 70%),
+        radial-gradient(ellipse 500px 500px at 5% 90%, rgba(0,165,168,0.12) 0%, transparent 70%);
+    }
+    .lp-hero-inner { position: relative; z-index: 1; }
+    .lp-eyebrow {
+      font-family: 'Kanit', sans-serif;
+      font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 1.25rem;
+    }
+    .lp-hero h1 {
+      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      color: #fff; font-weight: 700;
+      margin-bottom: 1.25rem;
+      max-width: 820px;
+    }
+    .lp-hero h1 em { color: var(--green); font-style: normal; }
+    .lp-hero p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(255,255,255,0.8);
+      max-width: 620px; line-height: 1.75;
+    }
+
+    /* ── PROGRAMS ── */
+    .programs { padding: 90px 0; background: var(--light); }
+    .programs-intro {
+      text-align: center; margin-bottom: 3.5rem;
+    }
+    .programs-intro h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      color: var(--dark); margin-bottom: 0.75rem;
+    }
+    .programs-intro p { color: #666; font-size: 1.05rem; max-width: 580px; margin: 0 auto; }
+
+    .programs-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+      align-items: start;
+    }
+
+    .program-card {
+      background: #fff; border-radius: 12px;
+      box-shadow: 0 6px 30px rgba(0,0,0,0.09);
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .program-card:hover { transform: translateY(-4px); box-shadow: 0 14px 50px rgba(0,0,0,0.13); }
+
+    .program-header {
+      padding: 2rem 2rem 1.5rem;
+      color: #fff;
+    }
+    .program-header.green  { background: linear-gradient(135deg, #82ac2f 0%, var(--green) 100%); }
+    .program-header.navy   { background: linear-gradient(135deg, var(--dark) 0%, #1a1f36 100%); }
+
+    .program-tag {
+      display: inline-block;
+      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+      background: rgba(255,255,255,0.2); border-radius: 20px;
+      padding: 0.25rem 0.75rem; margin-bottom: 1rem;
+      color: rgba(255,255,255,0.95);
+    }
+    .program-header h2 { font-size: clamp(1.4rem, 2.5vw, 1.9rem); color: #fff; margin-bottom: 0.5rem; }
+    .program-header .program-subtitle { font-size: 0.92rem; color: rgba(255,255,255,0.8); line-height: 1.5; }
+
+    .program-body { padding: 1.75rem 2rem 2rem; flex: 1; display: flex; flex-direction: column; }
+
+    .program-desc {
+      font-size: 0.97rem; color: #444; line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+    .program-desc strong { color: var(--dark); }
+
+    .program-highlights {
+      list-style: none; margin-bottom: 1.5rem;
+    }
+    .program-highlights li {
+      font-size: 0.9rem; color: #555; padding: 0.35rem 0;
+      padding-left: 1.3rem; position: relative; line-height: 1.45;
+    }
+    .program-highlights li::before {
+      content: '✓'; position: absolute; left: 0;
+      color: var(--green); font-weight: 700; font-size: 0.85rem;
+    }
+
+    .program-alert {
+      background: #fff8e1; border-left: 3px solid #f5a623;
+      border-radius: 0 6px 6px 0; padding: 0.75rem 1rem;
+      font-size: 0.85rem; color: #7a5c00; margin-bottom: 1.75rem;
+    }
+    .program-alert strong { color: #5c4200; }
+
+    .program-actions { display: flex; flex-direction: column; gap: 0.75rem; margin-top: auto; }
+
+    .btn {
+      display: inline-block; padding: 0.85rem 1.75rem;
+      border-radius: 4px; font-size: 0.95rem; font-weight: 600;
+      text-decoration: none; transition: all 0.2s;
+      letter-spacing: 0.02em; cursor: pointer; border: none;
+      text-align: center;
+    }
+    .btn-primary { background: var(--green); color: #fff; }
+    .btn-primary:hover { background: #82ac2f; transform: translateY(-1px); }
+    .btn-outline-dark {
+      background: transparent; color: var(--dark);
+      border: 2px solid var(--dark); padding: 0.8rem 1.75rem;
+    }
+    .btn-outline-dark:hover { background: var(--dark); color: #fff; }
+    .btn-outline-green {
+      background: transparent; color: var(--green);
+      border: 2px solid var(--green); padding: 0.8rem 1.75rem;
+    }
+    .btn-outline-green:hover { background: var(--green); color: #fff; }
+
+    .btn-cta-label {
+      font-size: 0.75rem; color: #999; text-align: center;
+      margin-top: -0.25rem; margin-bottom: 0.25rem;
+    }
+
+    /* ── DIVIDER ── */
+    .or-divider {
+      text-align: center; padding: 10px 0 0; color: #aaa; font-size: 0.85rem;
+      position: relative;
+    }
+    .or-divider::before, .or-divider::after {
+      content: ''; display: inline-block;
+      width: 28%; height: 1px; background: #e0e0e0;
+      vertical-align: middle; margin: 0 0.75rem;
+    }
+
+    /* ── GUARANTEE STRIP ── */
+    .guarantee-strip {
+      background: var(--dark); padding: 56px 0; text-align: center;
+    }
+    .guarantee-strip h3 {
+      font-size: clamp(1.4rem, 3vw, 2rem); color: #fff; margin-bottom: 0.75rem;
+    }
+    .guarantee-strip p { color: rgba(255,255,255,0.72); font-size: 1rem; max-width: 560px; margin: 0 auto 2rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark); border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 2rem; text-align: center;
+      font-size: 0.85rem; color: rgba(255,255,255,0.45);
+    }
+    footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    footer a:hover { color: var(--green); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 780px) {
+      .programs-grid { grid-template-columns: 1fr; }
+      .lp-hero { padding: 110px 0 64px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="Authentic Intelligence LLC" />
+    </a>
+    <a href="index.html" class="nav-back">← Back to Main Site</a>
+    <a href="reserve.html" class="nav-cta-link">Reserve Your Spot</a>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section class="lp-hero">
+    <div class="container lp-hero-inner">
+      <p class="lp-eyebrow">Sound Familiar?</p>
+      <h1>&ldquo;I need expert help, but I have <em>commitment issues.&rdquo;</em></h1>
+      <p>You don't have to choose between doing nothing and signing a long-term retainer. I've built two programs designed for maximum flexibility and budget constraints.</p>
+    </div>
+  </section>
+
+  <!-- ─── PROGRAMS ─── -->
+  <section class="programs">
+    <div class="container">
+
+      <div class="programs-intro">
+        <h2>Flexible. No Retainer. No Pressure.</h2>
+        <p>Access expert communications help. When and how you need it.</p>
+      </div>
+
+      <div class="programs-grid">
+
+        <!-- OPTION 1: ON CALL ADVISORY -->
+        <div class="program-card">
+          <div class="program-header green">
+            <span class="program-tag">Option 1</span>
+            <h2>Advice when you need it</h2>
+            <p class="program-subtitle">Bank on trusted, experienced counsel without exhorbitant fees.</p>
+          </div>
+          <div class="program-body">
+            <p class="program-desc">
+              <strong>12 or 6 credits. Yours for 6 months.</strong> Use them however you need — one at a time or in a batch to cover a deeper project.
+            </p>
+            <ul class="program-highlights">
+              <li>Gut checks &amp; sounding board calls</li>
+              <li>Document &amp; messaging reviews</li>
+              <li>Strategy or brainstorm sessions, offsite facilitation</li>
+              <li>Media training</li>
+              <li>Board communications</li>
+              <li>Organization design</li>
+              <li>Agency management advice</li>
+              <li>Presentation rehearsal</li>
+              <li>90-day rollover extension for unused credits</li>
+            </ul>
+            <p style="font-size:0.92rem; color:var(--dark); font-weight:700; margin-bottom:1.25rem;"><strong>Subscribers gain free access to monthly virtual master classes and quarterly networking events.</strong></p>
+            <div class="program-alert">
+              <strong>⚡ Limited availability:</strong> Select group of subscriptions available now through July 31, 2026.
+            </div>
+            <p style="font-size:0.9rem; color:#666; margin-bottom:0.4rem; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;">No retainer. No lock-in.</p>
+            <div class="program-actions">
+              <a href="reserve.html?program=oncall" class="btn btn-primary">Subscribe now →</a>
+              <div class="or-divider">or</div>
+              <a href="https://calendly.com/jeanne-srk3/on-call-subscription-chat" target="_blank" rel="noopener" class="btn btn-outline-green">Book a consult to learn more</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- OPTION 2: EXECUTIVE VISIBILITY SPRINT -->
+        <div class="program-card">
+          <div class="program-header navy">
+            <span class="program-tag">Option 2</span>
+            <h2>Executive Visibility Sprint</h2>
+            <p class="program-subtitle">Get out there. Own your narrative. Become a thought leader.</p>
+          </div>
+          <div class="program-body">
+            <p class="program-desc">
+              In this <strong>8-week program</strong>, bet on yourself (or your boss) and emerge with crystallized positioning, a compelling story and expert POV. Raise that profile, nail your positioning, develop a narrative and start on that road to thought leadership.
+            </p>
+            <ul class="program-highlights">
+              <li>Ten 1:1 live sessions, timed to your schedule, within the 8 week session</li>
+              <li>Prioritize the focus. We'll collaborate to design your deliverables</li>
+              <li>Crystallized positioning &amp; messaging</li>
+              <li>Compelling personal narrative</li>
+              <li>LinkedIn and other social media strategies</li>
+              <li>Expert point of view development</li>
+              <li>Thought leadership roadmap</li>
+            </ul>
+            <div style="background:#f0f4ff; border-left: 3px solid var(--blue); border-radius: 0 6px 6px 0; padding: 0.75rem 1rem; font-size: 0.9rem; color: #2D3142; margin-bottom: 1.75rem;">
+              <strong>Time-pressed? Need it now?</strong> In a rush? A <strong>two-week Mini-Sprint</strong> is a focused program intro. Four 1:1 live sessions over 10 business days. Come away with a sharper elevator pitch, CV, thought leader narrative and plan outline.
+            </div>
+            <div class="program-actions">
+              <a href="reserve.html?program=sprint" class="btn btn-primary">Secure your Sprint spot →</a>
+              <div class="or-divider">or</div>
+              <a href="https://calendly.com/jeanne-srk3/executive-visibility-sprint-consult" target="_blank" rel="noopener" class="btn btn-outline-dark">Book a chat about Visibility Sprints</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── GUARANTEE ─── -->
+  <section class="guarantee-strip">
+    <div class="container">
+      <h3>Not sure which is right for you?</h3>
+      <p>Book a free 15-minute call and we'll figure it out together. No pressure, no pitch — just a straight conversation about what you actually need.</p>
+      <a href="https://calendly.com/jeanne-srk3/on-call-subscription-chat" target="_blank" rel="noopener" class="btn btn-primary">Book a free 15-min call →</a>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <p>© 2026 Authentic Intelligence LLC &nbsp;·&nbsp; <a href="mailto:jeanne@authentic-intel.co">jeanne@authentic-intel.co</a> &nbsp;·&nbsp; <a href="index.html">Back to main site</a></p>
+  </footer>
+
+</body>
+</html>
