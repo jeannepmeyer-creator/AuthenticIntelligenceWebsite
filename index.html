@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Authentic Intelligence LLC | Jeanne Meyer</title>
+  <meta name="description" content="I help companies and their C-Suites build, grow, fix and protect reputations — expert communications strategy and crisis management when the stakes are high." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #2D3142;
+      background: #fff;
+      line-height: 1.6;
+    }
+
+    /* ── Color Tokens ── */
+    :root {
+      --green:   #98c739;
+      --teal:    #00A5A8;
+      --coral:   #E8503A;
+      --blue:    #4A86C8;
+      --magenta: #C8357A;
+      --dark:    #2D3142;
+      --light:   #F7F8F5;
+    }
+
+    /* ── Typography ── */
+    h1, h2, h3, h4 { font-family: 'Kanit', 'Zilla Slab', Georgia, serif; line-height: 1.15; font-weight: 600; }
+
+    /* ── Utility ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    .section { padding: 80px 0; }
+    .section--alt { background: var(--light); }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.97);
+      border-bottom: 2px solid var(--green);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+      backdrop-filter: blur(6px);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo img { height: 36px; width: auto; }
+    .nav-logo-text {
+      font-family: 'Kanit', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.1;
+    }
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--dark);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green); }
+    .nav-cta {
+      background: var(--green);
+      color: #fff !important;
+      padding: 0.45rem 1.1rem;
+      border-radius: 4px;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: #82ac2f !important; color: #fff !important; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(135deg, rgba(45,49,66,0.88) 0%, rgba(26,31,54,0.86) 60%, rgba(13,42,42,0.9) 100%),
+        url('green-hills.jpg') center/cover no-repeat;
+      display: flex; align-items: center;
+      padding-top: 68px;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 600px 400px at 80% 30%, rgba(141,182,0,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 500px 500px at 10% 80%, rgba(0,165,168,0.15) 0%, transparent 70%);
+    }
+    .hero-inner {
+      position: relative; z-index: 1;
+      max-width: 1100px; width: 100%;
+      padding: 0 2rem;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 4rem;
+      align-items: center;
+    }
+    .hero-photo-col { text-align: center; }
+    .hero-photo-col img {
+      width: 100%; border-radius: 8px;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.5);
+      border: 3px solid rgba(152,199,57,0.28);
+      object-fit: cover; object-position: center top;
+      display: block;
+    }
+    .hero-photo-name {
+      font-family: 'Kanit', sans-serif;
+      font-size: 1rem; font-weight: 600;
+      color: var(--green); margin-top: 0.85rem;
+    }
+    .hero-photo-title-line {
+      font-size: 0.82rem; color: rgba(255,255,255,0.65); margin-top: 0.2rem;
+    }
+    .hero-eyebrow {
+      font-family: 'Kanit', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 1.25rem;
+    }
+    #hero h1 {
+      font-size: clamp(2.6rem, 6vw, 4.5rem);
+      color: #fff;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+    #hero h1 span { color: var(--green); }
+    .hero-tagline {
+      font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+      color: rgba(255,255,255,0.85);
+      max-width: 680px;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+    .hero-tagline strong { color: #fff; font-weight: 500; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary { background: var(--green); color: #fff; }
+    .btn-primary:hover { background: #82ac2f; transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.5); }
+    .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+    .hero-scroll {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 6px;
+    }
+    .hero-scroll span { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+    .hero-scroll svg { color: rgba(255,255,255,0.35); animation: bounce 2s infinite; }
+    @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+    /* ── STATS BANNER ── */
+    #stats {
+      background: var(--green);
+      padding: 60px 0;
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 2px;
+    }
+    .stat-item {
+      text-align: center; padding: 2rem 1.5rem;
+      background: var(--green);
+    }
+    .stat-item + .stat-item { border-left: 1px solid rgba(255,255,255,0.2); }
+    .stat-number {
+      font-family: 'Zilla Slab', serif;
+      font-size: clamp(2.8rem, 5vw, 4rem);
+      color: #fff;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .stat-text {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.5;
+      max-width: 220px;
+      margin: 0 auto;
+    }
+    .stat-source { font-size: 0.75rem; color: rgba(255,255,255,0.6); margin-top: 0.5rem; }
+
+    /* ── ABOUT ── */
+    #about {
+      background: linear-gradient(135deg, var(--dark) 0%, #1a1f36 60%, #0d2a2a 100%);
+      padding: 90px 0;
+    }
+    .about-inner {
+      display: grid; grid-template-columns: 1fr 1.6fr; gap: 4rem; align-items: center;
+    }
+    .about-photo-wrap {
+      position: relative;
+    }
+    .about-photo-wrap img {
+      width: 100%; border-radius: 6px;
+      display: block;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .about-photo-label {
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .about-photo-name {
+      font-family: 'Kanit', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--green);
+    }
+    .about-photo-title {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.75);
+      font-weight: 400;
+      margin-top: 0.2rem;
+    }
+    .about-content h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: #fff;
+      margin-bottom: 1.25rem;
+    }
+    .about-intro {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.92);
+      margin-bottom: 2rem;
+      line-height: 1.75;
+    }
+    .about-credentials {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .credential {
+      background: rgba(255,255,255,0.12);
+      border-radius: 6px; padding: 1rem 1.25rem;
+      border-left: 3px solid rgba(255,255,255,0.5);
+    }
+    .credential p { font-size: 0.9rem; color: rgba(255,255,255,0.9); line-height: 1.5; }
+
+    /* ── TAGLINE BREAK ── */
+    .tagline-break {
+      background:
+        linear-gradient(135deg, rgba(130,172,47,0.93) 0%, rgba(95,140,20,0.93) 100%),
+        url('green-leaves.jpg') center/cover no-repeat;
+      padding: 70px 0;
+      text-align: center;
+    }
+    .tagline-break blockquote {
+      font-family: 'Kanit', 'Zilla Slab', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      color: #fff;
+      font-weight: 600;
+      max-width: 860px;
+      margin: 0 auto;
+      line-height: 1.4;
+      padding: 0 2rem;
+    }
+    .tagline-break cite {
+      display: block; margin-top: 1.25rem;
+      font-size: 1rem; color: rgba(255,255,255,0.75);
+      font-style: normal; font-family: 'Inter', sans-serif;
+    }
+
+    /* ── SERVICES ── */
+    #services { padding: 90px 0; }
+    #services h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      text-align: center; margin-bottom: 0.75rem;
+    }
+    .section-subtitle {
+      text-align: center; color: #666; font-size: 1.05rem; margin-bottom: 3.5rem;
+      max-width: 600px; margin-left: auto; margin-right: auto;
+    }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+      align-items: start;
+    }
+    .service-card-solo {
+      grid-column: 1 / -1;
+      max-width: calc(50% - 0.75rem);
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+    .service-card {
+      border-radius: 8px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: transform 0.25s, box-shadow 0.25s;
+      display: flex; flex-direction: column;
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 10px 36px rgba(0,0,0,0.13); }
+    .service-card-header {
+      padding: 1.75rem 1.5rem 1.25rem;
+      color: #fff;
+      cursor: pointer;
+    }
+    .service-card-body {
+      display: none;
+      padding: 1.25rem 1.5rem 1.75rem;
+      background: #fff;
+      border: 1px solid #eee; border-top: none;
+      border-radius: 0 0 8px 8px;
+    }
+    .service-card.open .service-card-body { display: block; }
+    .service-learn-more {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.9);
+      margin-top: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .service-card:hover .service-learn-more { opacity: 1; }
+    .service-card.open .service-learn-more { display: none; }
+    .service-card-header h3 {
+      font-size: 1.25rem; color: #fff; margin-bottom: 0.5rem;
+    }
+    .service-card-header p { font-size: 0.85rem; color: rgba(255,255,255,0.8); }
+    .service-card-body ul { list-style: none; }
+    .service-card-body li {
+      font-size: 0.9rem; color: #444; padding: 0.4rem 0;
+      padding-left: 1.2rem; position: relative; line-height: 1.45;
+    }
+    .service-card-body li::before {
+      content: '→'; position: absolute; left: 0;
+      color: var(--green); font-weight: 700;
+    }
+    .bg-teal    { background: var(--teal); }
+    .bg-green   { background: var(--green); }
+    .bg-blue    { background: var(--blue); }
+    .bg-magenta { background: var(--magenta); }
+    .bg-coral   { background: var(--coral); }
+    .bg-dark    { background: var(--dark); }
+
+    /* ── BRANDS ── */
+    #brands { background: var(--dark); padding: 70px 0; }
+    #brands h2 { color: #fff; text-align: center; font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 0.5rem; }
+    #brands .section-subtitle { color: rgba(255,255,255,0.5); margin-bottom: 3rem; }
+    .brands-grid {
+      display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center;
+    }
+    .brand-pill {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 40px; padding: 0.5rem 1.25rem;
+      font-size: 0.9rem; color: rgba(255,255,255,0.8);
+      font-weight: 500;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .brand-pill:hover { background: rgba(141,182,0,0.15); border-color: var(--green); color: #fff; }
+
+    /* ── CLIENTS ── */
+    #clients { padding: 90px 0; background: var(--blue); }
+    #clients h2 { color: #fff; font-size: clamp(1.8rem, 3.5vw, 2.6rem); text-align: center; margin-bottom: 0.5rem; }
+    #clients .section-subtitle { color: rgba(255,255,255,0.75); margin-bottom: 3rem; }
+    .clients-columns {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 0.5rem 2rem;
+    }
+    .clients-columns li {
+      color: rgba(255,255,255,0.92);
+      font-size: 0.95rem; padding: 0.35rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      list-style: none;
+    }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials { padding: 90px 0; background: var(--light); }
+    #testimonials h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); text-align: center; margin-bottom: 3rem; }
+
+    /* Featured long quote */
+    .raves-featured {
+      background: var(--teal);
+      border-radius: 10px;
+      padding: 3rem 3.5rem;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    .raves-featured p {
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      color: #fff;
+      font-style: italic;
+      line-height: 1.75;
+      position: relative; z-index: 1;
+      max-width: 780px;
+    }
+
+    /* Short punchy quotes row */
+    .raves-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+    }
+    .rave-item {
+      padding: 1.75rem 1.5rem;
+      border-left: 3px solid var(--green);
+      background: #fff;
+      border-radius: 0 6px 6px 0;
+    }
+    .rave-item:nth-child(2) { border-left-color: var(--coral); }
+    .rave-item:nth-child(3) { border-left-color: var(--blue); }
+    .rave-item:nth-child(4) { border-left-color: var(--magenta); }
+    .rave-item:nth-child(5) {
+      border-left-color: var(--dark);
+      grid-column: 3;
+      grid-row: 1 / 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .rave-item p {
+      font-size: 0.95rem;
+      color: #333;
+      font-style: italic;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 900px) {
+      .raves-row { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .rave-item:nth-child(5) { grid-column: auto; grid-row: auto; display: block; }
+      .raves-featured { padding: 2rem; }
+    }
+    @media (max-width: 640px) {
+      .raves-row { grid-template-columns: 1fr; }
+    }
+
+    /* ── RECENT WORK ── */
+    #work { padding: 90px 0; background: #fff; }
+    #work h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); margin-bottom: 0.5rem; }
+    .work-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    .work-item {
+      padding: 1.5rem 1.75rem;
+      border-left: 4px solid var(--green);
+      background: var(--light);
+      border-radius: 0 6px 6px 0;
+    }
+    .work-item:nth-child(2) { border-left-color: var(--teal); }
+    .work-item:nth-child(3) { border-left-color: var(--coral); }
+    .work-item:nth-child(4) { border-left-color: var(--blue); }
+    .work-item:nth-child(5) { border-left-color: var(--magenta); }
+    .work-item:nth-child(6) { border-left-color: var(--dark); }
+    .work-item:nth-child(7) { border-left-color: var(--teal); }
+    .work-item-full { grid-column: 1 / -1; }
+    .work-title {
+      font-family: 'Kanit', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--dark);
+      margin-bottom: 0.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .work-desc { font-size: 0.9rem; color: #555; line-height: 1.65; }
+    @media (max-width: 640px) {
+      .work-list { grid-template-columns: 1fr; }
+      .work-item-full { grid-column: 1; }
+    }
+
+    /* ── CONNECT ── */
+    #connect { padding: 90px 0; background: var(--green); }
+    .connect-inner { text-align: center; }
+    #connect h2 { font-size: clamp(2rem, 4vw, 3rem); color: #fff; margin-bottom: 0.75rem; }
+    #connect p { font-size: 1.1rem; color: rgba(255,255,255,0.85); margin-bottom: 2.5rem; }
+    .connect-email {
+      display: inline-block;
+      background: #fff; color: var(--dark);
+      padding: 1rem 2.5rem; border-radius: 4px;
+      font-weight: 700; font-size: 1.05rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      margin-bottom: 3rem;
+      letter-spacing: 0.01em;
+    }
+    .connect-email:hover { background: var(--dark); color: #fff; transform: translateY(-2px); }
+    .social-links {
+      display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap;
+    }
+    .social-link {
+      display: flex; align-items: center; gap: 0.6rem;
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      font-size: 0.95rem; font-weight: 500;
+      padding: 0.6rem 1.25rem;
+      border: 1.5px solid rgba(255,255,255,0.45);
+      border-radius: 40px;
+      transition: all 0.2s;
+    }
+    .social-link:hover { background: rgba(255,255,255,0.15); border-color: #fff; color: #fff; }
+    .social-link svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.45);
+    }
+    footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    footer a:hover { color: var(--green); }
+
+    /* ── TEASER STRIP ── */
+    .teaser-strip {
+      background: linear-gradient(90deg, #1a1f36 0%, #0d2a2a 100%);
+      border-top: 4px solid var(--green);
+      border-bottom: 4px solid var(--green);
+      padding: 56px 0;
+    }
+    .teaser-strip-inner {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+    }
+    .teaser-eyebrow {
+      font-family: 'Kanit', sans-serif;
+      font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 0.5rem;
+    }
+    .teaser-strip h2 {
+      font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+      color: #fff; font-weight: 700;
+    }
+    .teaser-strip h2 em { color: var(--green); font-style: normal; }
+
+    /* ── POPUP MODAL ── */
+    .popup-overlay {
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,0.45);
+      display: flex; align-items: center; justify-content: flex-end;
+      padding: 1rem 2.5rem;
+      backdrop-filter: blur(3px);
+      opacity: 1; transition: opacity 0.3s;
+    }
+    .popup-overlay.hidden { display: none; }
+    .popup-box {
+      background: linear-gradient(145deg, #1a1f36 0%, #0d2a2a 100%);
+      border: 1px solid rgba(152,199,57,0.35);
+      border-radius: 14px;
+      padding: 1.75rem 2rem 1.5rem;
+      max-width: 336px; width: 100%;
+      position: relative; text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+    }
+    .popup-close {
+      position: absolute; top: 1rem; right: 1.25rem;
+      background: none; border: none; cursor: pointer;
+      color: rgba(255,255,255,0.4); font-size: 1.6rem; line-height: 1;
+      transition: color 0.2s;
+    }
+    .popup-close:hover { color: #fff; }
+    .popup-eyebrow {
+      font-family: 'Kanit', sans-serif;
+      font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 1rem;
+    }
+    .popup-box h2 {
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      color: #fff; margin-bottom: 0.9rem;
+    }
+    .popup-box h2 em { color: var(--green); font-style: normal; }
+    .popup-box p {
+      color: rgba(255,255,255,0.78); margin-bottom: 2rem;
+      line-height: 1.7; font-size: 0.98rem;
+    }
+    .popup-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .popup-dismiss {
+      display: block; margin-top: 1.25rem;
+      font-size: 0.78rem; color: rgba(255,255,255,0.35);
+      cursor: pointer; text-decoration: underline;
+      background: none; border: none; transition: color 0.2s;
+    }
+    .popup-dismiss:hover { color: rgba(255,255,255,0.65); }
+
+    /* ── HAMBURGER (mobile) ── */
+    .nav-toggle {
+      display: none; background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .nav-toggle span {
+      display: block; width: 24px; height: 2px; background: var(--dark);
+      margin: 5px 0; transition: all 0.3s;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-photo-col { max-width: 280px; margin: 0 auto; }
+      .hero-scroll { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-photo-wrap { max-width: 340px; margin: 0 auto; }
+      .clients-columns { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 640px) {
+      .services-grid { grid-template-columns: 1fr; }
+
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat-item + .stat-item { border-left: none; border-top: 1px solid rgba(255,255,255,0.2); }
+      .clients-columns { grid-template-columns: 1fr 1fr; }
+      .about-credentials { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 68px; left: 0; right: 0;
+        background: #fff; padding: 1rem 2rem 1.5rem;
+        border-bottom: 2px solid var(--green);
+        gap: 0.75rem;
+      }
+      .nav-toggle { display: block; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── POPUP MODAL ─── -->
+  <div class="popup-overlay hidden" id="popupOverlay">
+    <div class="popup-box">
+      <button class="popup-close" id="popupClose" aria-label="Close">&times;</button>
+      <p class="popup-eyebrow">No retainer required</p>
+      <h2>Expert help without the <em>commitment?</em></h2>
+      <p>Flexible credits, sprints and on-call access — get exactly the expert communications support you need, when you need it. No lock-in. No long-term contract. Limited slots.</p>
+      <div class="popup-actions">
+        <a href="landing.html" class="btn btn-primary">See How It Works →</a>
+      </div>
+      <button class="popup-dismiss" id="popupDismiss">Not now</button>
+    </div>
+  </div>
+
+  <!-- ─── NAV ─── -->
+  <nav>
+    <a href="#hero" class="nav-logo">
+      <img src="logo.png" alt="Authentic Intelligence LLC" />
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+
+      <li><a href="#testimonials">Raves</a></li>
+      <li><a href="#connect" class="nav-cta">Let's Talk</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <p class="hero-eyebrow">Authentic Intelligence LLC</p>
+        <h1>Strategies to build, grow,<br>protect and <span>fix reputations</span></h1>
+        <p class="hero-tagline">
+          I provide companies and executives expert communications counsel and crisis management when the stakes are high and you just need it handled.
+        </p>
+        <div class="hero-actions">
+          <a href="#connect" class="btn btn-primary">Let's Talk</a>
+          <a href="#services" class="btn btn-outline">See Services</a>
+        </div>
+      </div>
+      <div class="hero-photo-col">
+        <img src="Jeanne.jpg" alt="Jeanne Meyer, CEO & Founder of Authentic Intelligence" />
+        <div class="hero-photo-name">Jeanne Meyer</div>
+        <div class="hero-photo-title-line">CEO &amp; Founder, Authentic Intelligence</div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ─── TAGLINE BREAK ─── -->
+  <div class="tagline-break">
+    <blockquote>
+    Every brand needs a reservoir of goodwill. It's never too late to make a deposit.
+    </blockquote>
+  </div>
+
+  <!-- ─── ABOUT ─── -->
+  <section id="about">
+    <div class="container">
+      <div class="about-inner">
+        <div class="about-photo-wrap">
+          <!-- Headshot placeholder — replace src with actual photo path -->
+          <img
+            src="JeanneMeyer2.jpg"
+            alt="Jeanne Meyer, CEO & Founder of Authentic Intelligence"
+            id="headshot-img"
+            style="object-fit: cover; object-position: center top; max-height: 420px; width: 100%;"
+          />
+          <div class="about-photo-label">
+            <div class="about-photo-name">Jeanne Meyer</div>
+            <div class="about-photo-title">CEO &amp; Founder, Authentic Intelligence</div>
+          </div>
+        </div>
+        <div class="about-content">
+          <h2>Communications Expertise On Demand</h2>
+          <p class="about-intro">
+            Access the experience of a leader who has led communications for global, public companies and scaled dozens of start-ups. With me, you get decades of boardroom-tested instincts and someone who actually keeps up with where tech is going.
+          </p>
+          <div class="about-credentials">
+            <div class="credential">
+              <p>Experienced communications leader in tech, entertainment, media, CPG, retail and advertising</p>
+            </div>
+            <div class="credential">
+              <p>Advisor on $500B+ in transactions — launched and scaled 40+ start-ups</p>
+            </div>
+            <div class="credential">
+              <p>Global comms leader with decades experience at brands like Martha Stewart, EMI Music, Toys R Us and VP Al Gore's Current TV</p>
+            </div>
+            <div class="credential">
+              <p>Crisis management, stakeholder and financial communications advisor — recognized for making smart communications leaders smarter</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── STATS ─── -->
+  <section id="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">25%+</div>
+          <p class="stat-text">of a company's value is informed by its reputation</p>
+          <p class="stat-source">— World Economic Forum</p>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">87%</div>
+          <p class="stat-text">of decision makers say thought leadership enhances their perception of an organization</p>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">81%</div>
+          <p class="stat-text">believe a CEO needs a visible public profile for a company to be highly regarded</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SERVICES ─── -->
+  <section id="services" class="section">
+    <div class="container">
+      <h2>Services</h2>
+      <div class="services-grid">
+
+        <div class="service-card">
+          <div class="service-card-header bg-teal">
+            <h3>Crisis Management</h3>
+            <p>Activate a steady-in-a-storm leader in high stakes situations</p>
+            <div class="service-learn-more">Learn more ↓</div>
+          </div>
+          <div class="service-card-body">
+            <ul>
+              <li>Crisis Handbook Development</li>
+              <li>Senior-Level Workshop Design & Facilitation</li>
+              <li>Embedded Real-Time Management</li>
+              <li>War Room Set Up</li>
+              <li>Media & Stakeholder Engagement</li>
+              <li>Internal Communications</li>
+              <li>Prep for M&A and Leadership Change</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-card-header bg-green">
+            <h3>Strategic Counsel On Call</h3>
+            <p>Fractional Communications Leadership</p>
+            <div class="service-learn-more">Learn more ↓</div>
+          </div>
+          <div class="service-card-body">
+            <ul>
+              <li>Audit plans and make recommendations</li>
+              <li>Design, recruit and train marketing teams</li>
+              <li>Sharpen positioning and messaging</li>
+              <li>Executive thought leadership</li>
+              <li>Access to network and business development support</li>
+              <li>Interim agency or in-house leadership</li>
+              <li>Bespoke training, workshops and master classes</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="service-card service-card-solo">
+          <div class="service-card-header bg-blue">
+            <h3>Media and Presentation Training</h3>
+            <p>1:1 or group sessions</p>
+            <div class="service-learn-more">Learn more ↓</div>
+          </div>
+          <div class="service-card-body">
+            <ul>
+              <li>Prep for difficult or crisis situations</li>
+              <li>Control the narrative</li>
+              <li>Field tough questions</li>
+              <li>Bespoke Intro Session (1 hour)</li>
+              <li>1:1 follow-up sessions</li>
+              <li>Deliverables: recording, updated messaging and reference handbook</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TEASER STRIP ─── -->
+  <section class="teaser-strip">
+    <div class="container">
+      <div class="teaser-strip-inner">
+        <div>
+          <p class="teaser-eyebrow">No retainer required</p>
+          <h2>Not ready for a retainer? <em>You don't need one.</em></h2>
+        </div>
+        <a href="landing.html" class="btn btn-primary">Learn More →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── BRANDS ─── -->
+  <section id="brands">
+    <div class="container">
+      <h2>Experience With Top Brands</h2>
+      <p class="section-subtitle">A track record across technology, media, entertainment, retail and finance.</p>
+      <div class="brands-grid">
+        <span class="brand-pill">Discovery</span>
+        <span class="brand-pill">Uber</span>
+        <span class="brand-pill">Martha Stewart Living</span>
+        <span class="brand-pill">EMI Music</span>
+        <span class="brand-pill">BMG</span>
+        <span class="brand-pill">Toys R Us</span>
+        <span class="brand-pill">BuzzFeed</span>
+        <span class="brand-pill">Snap Inc.</span>
+        <span class="brand-pill">DirecTV</span>
+        <span class="brand-pill">Tripadvisor</span>
+        <span class="brand-pill">The Home Depot</span>
+        <span class="brand-pill">Cisco</span>
+        <span class="brand-pill">Priceline</span>
+        <span class="brand-pill">Paramount+</span>
+        <span class="brand-pill">Verisk</span>
+        <span class="brand-pill">Unilever</span>
+        <span class="brand-pill">Morning Brew</span>
+        <span class="brand-pill">Unacast</span>
+        <span class="brand-pill">Locality</span>
+        <span class="brand-pill">Merkle</span>
+        <span class="brand-pill">Trusted Media Brands</span>
+        <span class="brand-pill">sermo</span>
+        <span class="brand-pill">Downtown Music Holdings</span>
+        <span class="brand-pill">F45 Training</span>
+        <span class="brand-pill">55ip (JP Morgan)</span>
+        <span class="brand-pill">Integral Ad Science</span>
+        <span class="brand-pill">Scholastic</span>
+        <span class="brand-pill">As1One</span>
+        <span class="brand-pill">Meridiam</span>
+        <span class="brand-pill">Nauto</span>
+        <span class="brand-pill">Beers With Friends</span>
+        <span class="brand-pill">Potato.ai</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── RECENT WORK ─── -->
+  <section id="work">
+    <div class="container">
+      <h2>Recent Work</h2>
+      <p class="section-subtitle">Much of my work is about what you don't read about and/or highly confidential. But here are some examples of how I've helped clients in just the past 12 months.</p>
+      <div class="work-list">
+
+        <div class="work-item">
+          <p class="work-title">Managing comms around legal action</p>
+          <p class="work-desc">Eliminated negative reputational impact for a highly respected tech company faced with a frivolous class action suit.</p>
+        </div>
+
+        <div class="work-item">
+          <p class="work-title">Changed the conversation on social media</p>
+          <p class="work-desc">Developed a successful crisis strategy that enabled a luxury fashion retailer to quickly turn a highly negative social media incident into a major positive.</p>
+        </div>
+
+        <div class="work-item">
+          <p class="work-title">Seamless counsel for executive transition</p>
+          <p class="work-desc">On behalf of the board of directors for a media company, wrote the playbook, narrative and stakeholder communications plan for a high-profile and sensitive executive appointment.</p>
+        </div>
+
+        <div class="work-item">
+          <p class="work-title">Airtight acquisition comms</p>
+          <p class="work-desc">Provided counsel to C-Suite and developed strategy and messaging around a high profile creative industries acquisition.</p>
+        </div>
+
+        <div class="work-item">
+          <p class="work-title">Added marketplace muscle</p>
+          <p class="work-desc">Created and executed thought leadership and media relations campaigns that helped a respected e-commerce brand amplify its first-mover tech reputation, securing them advantageous, business-building collaborations.</p>
+        </div>
+
+        <div class="work-item">
+          <p class="work-title">Re-launched and drove leads</p>
+          <p class="work-desc">Developed go-to-market program to help a disruptive marketing tech company get customers in a noisy marketplace.</p>
+        </div>
+
+        <div class="work-item work-item-full">
+          <p class="work-title">Thought leadership</p>
+          <p class="work-desc">Transformed execs into distinguished and in-demand thought leaders with 1:1 reputation coaching, marketing strategies and new personal narratives, then helped them land better-paying C-Suite roles, secure speaking engagements, podcasts and wrote and got their bylined columns published to heighten their profiles and marketplace value.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TESTIMONIALS ─── -->
+  <section id="testimonials">
+    <div class="container">
+      <h2>Raves</h2>
+
+      <!-- Featured long quote -->
+      <div class="raves-featured">
+        <p>&ldquo;Ultimately transforms a company from the minute she walks in the door.&rdquo;</p>
+      </div>
+ <!-- Featured long quote -->
+    <div class="raves-featured">
+        <p>&ldquo;We're all about access to senior talent, so we were thrilled to tap Jeanne for her strategic communications wisdom, great ideas and valuable network.&rdquo;</p>
+        </div>
+      <!-- Short punchy quotes -->
+      <div class="raves-row">
+        <div class="rave-item">
+          <p>&ldquo;Savvy, efficient, insightful, ambitious for her clients.&rdquo;</p>
+        </div>
+        <div class="rave-item">
+          <p>&ldquo;Strategic, creative, well-networked and relentlessly tenacious.&rdquo;</p>
+        </div>
+        <div class="rave-item">
+          <p>&ldquo;Thorough, dependable, incredibly responsive.&rdquo;</p>
+        </div>
+        <div class="rave-item">
+          <p>&ldquo;She is a team builder&hellip; a driven performer.&rdquo;</p>
+        </div>
+        <div class="rave-item">
+          <p>&ldquo;Her breadth of experience and pattern recognition brings perspective and cuts right to the chase. She helped get our companies on the radar and definitely helped improve their marketplace perception and value.&rdquo;</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── CONNECT ─── -->
+  <section id="connect">
+    <div class="container">
+      <div class="connect-inner">
+        <h2>Let's Talk</h2>
+        <p>Ready to build, protect or fix your reputation? <a href="mailto:jeanne@authentic-intel.co" style="color:#fff; font-weight:600; text-decoration:underline; text-underline-offset:3px;">Get in touch.</a></p>
+        <p style="color:rgba(255,255,255,0.85); font-size:1rem; margin-bottom:1rem;">Follow me for more:</p>
+        <div class="social-links">
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/meyerjeanne/" target="_blank" rel="noopener" class="social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/jeannepmeyer/" target="_blank" rel="noopener" class="social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            Instagram
+          </a>
+          <!-- TikTok -->
+          <a href="https://www.tiktok.com/@jeannemeyernycvt" target="_blank" rel="noopener" class="social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/></svg>
+            TikTok
+          </a>
+          <!-- Substack -->
+          <a href="https://jeannemeyer.substack.com/" target="_blank" rel="noopener" class="social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+            Substack
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <p>© 2026 Authentic Intelligence LLC &nbsp;·&nbsp; <a href="mailto:jeanne@authentic-intel.co">jeanne@authentic-intel.co</a> &nbsp;·&nbsp; 917-816-5773</p>
+  </footer>
+
+  <script>
+    // Popup — show up to 3 times per browser, triggered when Services scrolls into view
+    (function() {
+      const key = 'aiPopupSeenCount';
+      const count = parseInt(localStorage.getItem(key) || '0', 10);
+      if (count < 3) {
+        const overlay = document.getElementById('popupOverlay');
+        var shown = false;
+        function closePopup() { overlay.classList.add('hidden'); }
+        function showPopup() {
+          if (shown) return;
+          shown = true;
+          overlay.classList.remove('hidden');
+          localStorage.setItem(key, count + 1);
+          document.getElementById('popupClose').addEventListener('click', closePopup);
+          document.getElementById('popupDismiss').addEventListener('click', closePopup);
+          overlay.addEventListener('click', function(e) { if (e.target === overlay) closePopup(); });
+        }
+        var servicesEl = document.getElementById('services');
+        if (servicesEl) {
+          var popupObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) { showPopup(); popupObserver.disconnect(); }
+            });
+          }, { threshold: 0.2 });
+          popupObserver.observe(servicesEl);
+        }
+      }
+    })();
+
+    // Service card expand on click
+    document.querySelectorAll('.service-card-header').forEach(function(header) {
+      header.addEventListener('click', function() {
+        this.closest('.service-card').classList.toggle('open');
+      });
+    });
+
+    // Mobile nav toggle
+    const toggle = document.getElementById('navToggle');
+    const links  = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id], div.tagline-break');
+    const navAs = document.querySelectorAll('.nav-links a');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navAs.forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+          });
+        }
+      });
+    }, { threshold: 0.35 });
+    sections.forEach(s => observer.observe(s));
+  </script>
+
+</body>
+</html>

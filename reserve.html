@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reserve Your Spot | Authentic Intelligence LLC</title>
+  <meta name="description" content="Reserve your On-Call Subscription or Executive Visibility Sprint with Jeanne Meyer." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: #2D3142; background: #F7F8F5; line-height: 1.6; }
+
+    :root {
+      --green:   #98c739;
+      --blue:    #4A86C8;
+      --dark:    #2D3142;
+      --light:   #F7F8F5;
+    }
+
+    h1, h2, h3 { font-family: 'Kanit', Georgia, serif; line-height: 1.15; font-weight: 600; }
+    .container { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.97);
+      border-bottom: 2px solid var(--green);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px; backdrop-filter: blur(6px);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { height: 36px; width: auto; }
+    .nav-back {
+      font-family: 'Kanit', sans-serif; font-size: 0.85rem; font-weight: 500;
+      color: var(--dark); text-decoration: none; letter-spacing: 0.04em;
+      text-transform: uppercase; display: flex; align-items: center; gap: 0.4rem;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--green); }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      background: linear-gradient(135deg, var(--dark) 0%, #1a1f36 60%, #0d2a2a 100%);
+      padding: 120px 0 70px; text-align: center; position: relative; overflow: hidden;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 600px 300px at 80% 50%, rgba(152,199,57,0.12) 0%, transparent 70%);
+    }
+    .page-header-inner { position: relative; z-index: 1; }
+    .page-eyebrow {
+      font-family: 'Kanit', sans-serif; font-size: 0.75rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 1rem;
+    }
+    .page-header h1 { font-size: clamp(2rem, 5vw, 3.2rem); color: #fff; margin-bottom: 1rem; }
+    .page-header p { color: rgba(255,255,255,0.75); font-size: 1rem; max-width: 520px; margin: 0 auto; }
+
+    /* ── HOW IT WORKS NOTICE ── */
+    .how-it-works-notice {
+      position: relative; z-index: 1;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(152,199,57,0.3);
+      border-radius: 8px; padding: 1rem 1.5rem;
+      margin: 2rem auto 0; max-width: 700px; text-align: center;
+    }
+    .how-it-works-notice p { font-size: 0.95rem; color: rgba(255,255,255,0.85); line-height: 1.6; }
+
+    /* ── FORM SECTION ── */
+    .reserve-section { padding: 60px 0 90px; }
+
+    /* Program selector */
+    .program-selector { margin-bottom: 2.5rem; }
+    .program-selector h2 { font-size: 1.3rem; margin-bottom: 1.25rem; color: var(--dark); }
+    .program-groups { display: flex; flex-direction: column; gap: 0.75rem; }
+    .program-group { display: flex; flex-direction: column; }
+
+    .program-option {
+      border: 2px solid #ddd; border-radius: 10px; padding: 1.25rem 1.5rem;
+      cursor: pointer; transition: border-color 0.2s, background 0.2s;
+      display: flex; align-items: flex-start; gap: 1rem; background: #fff;
+    }
+    .program-option:hover { border-color: var(--green); }
+    .program-option.selected { border-color: var(--green); background: #f4fde8; }
+    .program-option input[type="radio"] { margin-top: 4px; accent-color: var(--green); flex-shrink: 0; }
+    .program-option-label { flex: 1; }
+    .program-option-label strong { display: block; font-size: 0.97rem; color: var(--dark); margin-bottom: 0.25rem; }
+    .program-option-label span { font-size: 0.82rem; color: #666; line-height: 1.4; display: block; }
+
+    /* Sub-options */
+    .sub-options {
+      display: none; grid-template-columns: 1fr 1fr; gap: 0.75rem;
+      margin-top: 0; padding: 1rem; background: #f9f9f9;
+      border-radius: 0 0 10px 10px;
+      border: 2px solid var(--green); border-top: none;
+    }
+    .sub-options.visible { display: grid; }
+    .sub-option {
+      border: 1.5px solid #ddd; border-radius: 8px; padding: 0.85rem 1rem;
+      cursor: pointer; display: flex; gap: 0.75rem; align-items: flex-start;
+      background: #fff; transition: border-color 0.2s;
+    }
+    .sub-option:hover { border-color: var(--green); }
+    .sub-option.selected { border-color: var(--green); background: #f4fde8; }
+    .sub-option input[type="radio"] { margin-top: 3px; accent-color: var(--green); flex-shrink: 0; }
+    .sub-option strong { display: block; font-size: 0.88rem; color: var(--dark); }
+    .sub-option span { font-size: 0.78rem; color: #777; }
+
+    /* Contact form */
+    .contact-form { background: #fff; border-radius: 12px; padding: 2.5rem; box-shadow: 0 4px 24px rgba(0,0,0,0.07); }
+    .contact-form h2 { font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--dark); }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1rem; }
+    .form-group label { font-size: 0.85rem; font-weight: 600; color: var(--dark); }
+    .form-group input, .form-group textarea {
+      padding: 0.75rem 1rem; border: 1.5px solid #ddd; border-radius: 6px;
+      font-family: 'Inter', sans-serif; font-size: 0.95rem; color: var(--dark);
+      transition: border-color 0.2s; background: #fff;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none; border-color: var(--green);
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-note { font-size: 0.78rem; color: #999; margin-top: 0.25rem; }
+
+    /* ── CHAT SECTION ── */
+    .chat-section { margin: 1.75rem 0 1.5rem; }
+    .chat-heading { font-size: 1rem; font-weight: 700; color: var(--dark); margin-bottom: 0.75rem; }
+    .chat-box {
+      background: #f0f6ff; border-left: 3px solid var(--blue);
+      border-radius: 0 8px 8px 0; padding: 1.25rem 1.5rem;
+    }
+    .chat-box > p { font-size: 0.9rem; color: #444; margin-bottom: 0.75rem; }
+    .calendly-links { display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.75rem; }
+    .calendly-link {
+      color: var(--blue); font-weight: 600; text-decoration: none; font-size: 0.9rem;
+    }
+    .calendly-link:hover { text-decoration: underline; }
+
+    .submit-btn {
+      display: block; width: 100%; padding: 1rem;
+      background: var(--green); color: #fff;
+      border: none; border-radius: 6px; cursor: pointer;
+      font-family: 'Kanit', sans-serif; font-size: 1.05rem; font-weight: 600;
+      letter-spacing: 0.03em; transition: background 0.2s, transform 0.15s;
+      margin-top: 0.5rem;
+    }
+    .submit-btn:hover { background: #82ac2f; transform: translateY(-1px); }
+
+    /* ── NOT READY CARD ── */
+    .not-ready-card {
+      background: #fff; border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+      padding: 2rem 2.5rem; margin-top: 2rem;
+      border-top: 4px solid var(--dark);
+    }
+    .not-ready-card h3 { font-size: 1.1rem; color: var(--dark); margin-bottom: 1rem; }
+    .not-ready-box {
+      background: var(--light); border-radius: 8px; padding: 1rem 1.25rem;
+      font-size: 0.95rem; color: #444; line-height: 1.7;
+    }
+    .not-ready-box a { color: var(--green); font-weight: 600; text-decoration: none; }
+    .not-ready-box a:hover { text-decoration: underline; }
+    .not-ready-btn {
+      display: inline-block; padding: 0.65rem 1.4rem;
+      background: var(--dark); color: #fff;
+      border: none; border-radius: 6px; cursor: pointer;
+      font-family: 'Kanit', sans-serif; font-size: 0.92rem; font-weight: 600;
+      letter-spacing: 0.03em; transition: background 0.2s;
+    }
+    .not-ready-btn:hover { background: #1a1f36; }
+
+    /* Thank you state */
+    .thank-you { display: none; text-align: center; padding: 3rem 2rem; }
+    .thank-you.visible { display: block; }
+    .thank-you .ty-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .thank-you h2 { font-size: 2rem; color: var(--dark); margin-bottom: 0.75rem; }
+    .thank-you p { color: #555; font-size: 1rem; margin-bottom: 1.5rem; max-width: 440px; margin-left: auto; margin-right: auto; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark); padding: 2rem; text-align: center;
+      font-size: 0.85rem; color: rgba(255,255,255,0.45);
+    }
+    footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    footer a:hover { color: var(--green); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .sub-options { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-form { padding: 1.75rem 1.25rem; }
+      .not-ready-card { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="Authentic Intelligence LLC" />
+    </a>
+    <a href="landing.html" class="nav-back">← Back to Programs</a>
+  </nav>
+
+  <!-- ─── HEADER ─── -->
+  <div class="page-header">
+    <div class="container page-header-inner">
+      <p class="page-eyebrow">No retainer. No lock-in.</p>
+      <h1>Reserve Your Spot</h1>
+      <p>Secure a limited subscription or sprint now. A select number of spots are available if you sign up by July 31, 2026.</p>
+    </div>
+    <div class="container">
+      <div class="how-it-works-notice">
+        <p>Get communications expertise when and how you need it with these flexible, limited programs. Here's how.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── RESERVE FORM ─── -->
+  <section class="reserve-section">
+    <div class="container">
+
+      <!-- 1. Program Selector -->
+      <div class="program-selector">
+        <h2>1. Choose your program</h2>
+        <div class="program-groups">
+
+          <!-- On-Call Subscription -->
+          <div class="program-group">
+            <label class="program-option" id="opt-oncall">
+              <input type="radio" name="program" value="oncall" />
+              <div class="program-option-label">
+                <strong>On-Call Subscription</strong>
+                <span>Flexible credits over 6 months. Use for strategy, reviews, media training and more.</span>
+              </div>
+            </label>
+            <div class="sub-options" id="oncall-subopts">
+              <label class="sub-option" id="sub-12">
+                <input type="radio" name="oncall-tier" value="12credits" />
+                <div>
+                  <strong>12 Credits</strong>
+                  <span>More access, same 6-month window</span>
+                </div>
+              </label>
+              <label class="sub-option" id="sub-6">
+                <input type="radio" name="oncall-tier" value="6credits" />
+                <div>
+                  <strong>6 Credits</strong>
+                  <span>Flexible access, 6-month window</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Executive Visibility Sprint -->
+          <div class="program-group">
+            <label class="program-option" id="opt-sprint">
+              <input type="radio" name="program" value="sprint" />
+              <div class="program-option-label">
+                <strong>Executive Visibility Sprint</strong>
+                <span>Get out there. Own your narrative. Become a thought leader.</span>
+              </div>
+            </label>
+            <div class="sub-options" id="sprint-subopts">
+              <label class="sub-option" id="sub-full">
+                <input type="radio" name="sprint-tier" value="fullsprint" />
+                <div>
+                  <strong>Full Sprint (8 weeks)</strong>
+                  <span>Complete positioning &amp; thought leadership program</span>
+                </div>
+              </label>
+              <label class="sub-option" id="sub-mini">
+                <input type="radio" name="sprint-tier" value="minisprint" />
+                <div>
+                  <strong>Mini-Sprint (2 weeks)</strong>
+                  <span>Intro program for the time-pressed</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 2. Contact Form -->
+      <div class="contact-form" id="contactForm">
+        <h2>2. Fill in some details, please.</h2>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First Name *</label>
+            <input type="text" id="fname" placeholder="Jane" required />
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name *</label>
+            <input type="text" id="lname" placeholder="Smith" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" placeholder="jane@company.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="company">Company / Organization</label>
+          <input type="text" id="company" placeholder="Your company or role" />
+        </div>
+
+        <div class="form-group">
+          <label for="context">What's going on? <span style="font-weight:400;">(optional but helpful)</span></label>
+          <textarea id="context" placeholder="A sentence or two about what you're working on or what's keeping you up at night. No need to write an essay."></textarea>
+          <span class="form-note">This helps Jeanne prepare for your follow-up call.</span>
+        </div>
+
+        <!-- Chat option -->
+        <div class="chat-section">
+          <p class="chat-heading"><strong>Let's start with a chat.</strong></p>
+          <div class="chat-box">
+            <p>Leave your preferred number and time, or choose a time.</p>
+            <div class="form-group" style="margin-top:0.85rem; margin-bottom:0;">
+              <label for="phone">Phone &amp; preferred time <span style="font-weight:400;">(optional)</span></label>
+              <input type="text" id="phone" placeholder="e.g. 917-555-1234, weekday mornings" />
+            </div>
+            <div class="calendly-links">
+              <p style="font-size:0.82rem; color:#666; margin-bottom:0.4rem; margin-top:0.75rem;">Or book directly:</p>
+              <a href="https://calendly.com/jeanne-srk3/on-call-subscription-chat" target="_blank" rel="noopener" class="calendly-link">On-Call Subscriptions →</a>
+              <a href="https://calendly.com/jeanne-srk3/executive-visibility-sprint-consult" target="_blank" rel="noopener" class="calendly-link">Executive Visibility Sprint →</a>
+            </div>
+          </div>
+        </div>
+
+        <button class="submit-btn" id="submitBtn" type="button">Reserve My Spot →</button>
+
+      </div>
+
+      <!-- Not Ready -->
+      <div class="not-ready-card" id="notReadyCard">
+        <h3>I'm not ready but let's talk in six months</h3>
+        <div class="not-ready-box">
+          <p>Leave your email or phone number for a follow up later this year. In the meantime, you can keep in touch via <a href="https://www.linkedin.com/in/meyerjeanne/" target="_blank" rel="noopener">LinkedIn</a> and <a href="https://substack.com/@jeannemeyer" target="_blank" rel="noopener">Substack</a>.</p>
+          <div class="form-group" style="margin-top:1rem; margin-bottom:0.75rem;">
+            <label for="notReadyContact" style="font-size:0.85rem; font-weight:600; color:var(--dark);">Email or phone number</label>
+            <input type="text" id="notReadyContact" placeholder="jane@company.com or 917-555-1234" />
+          </div>
+          <button class="not-ready-btn" id="notReadyBtn" type="button">Keep me in the loop →</button>
+        </div>
+        <div class="not-ready-thanks" id="notReadyThanks" style="display:none; margin-top:1rem; font-size:0.92rem; color:var(--dark); font-weight:600;">
+          ✓ Got it — Jeanne will be in touch later this year!
+        </div>
+      </div>
+
+      <!-- Thank You State -->
+      <div class="thank-you" id="thankYou">
+        <div class="ty-icon">🎉</div>
+        <h2>You're on the list!</h2>
+        <p>Jeanne will reach out within 24 hours to confirm your spot and walk you through next steps. Keep an eye on your inbox.</p>
+        <a href="index.html" style="display:inline-block; margin-top:1rem; padding:0.85rem 2rem; background:var(--green); color:#fff; border-radius:4px; font-weight:600; text-decoration:none;">← Back to Main Site</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <p>© 2026 Authentic Intelligence LLC &nbsp;·&nbsp; <a href="mailto:jeanne@authentic-intel.co">jeanne@authentic-intel.co</a> &nbsp;·&nbsp; <a href="index.html">Main Site</a></p>
+  </footer>
+
+  <script>
+    // ── Google Sheet integration ──────────────────────────────────────
+    // Paste your Apps Script Web App URL here after completing setup
+    // (see sheet-script.js in this folder for step-by-step instructions)
+    var SHEET_URL = 'https://script.google.com/macros/s/AKfycbzg2G8Bfhqs4xi_oF7rdvexp79p09PGqoyXKooaTIf2G2yVviPXVpvp-58gCAi10YpC/exec';
+
+    function saveToSheet(data) {
+      if (!SHEET_URL || SHEET_URL === 'PASTE_YOUR_WEB_APP_URL_HERE') return;
+      fetch(SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).catch(function() {}); // silent fail — mailto is the backup notification
+    }
+    // ─────────────────────────────────────────────────────────────────
+
+    // Pre-select program from URL param
+    const params = new URLSearchParams(window.location.search);
+    const prog = params.get('program');
+    if (prog === 'oncall') {
+      document.querySelector('input[value="oncall"]').checked = true;
+      document.getElementById('opt-oncall').classList.add('selected');
+      document.getElementById('oncall-subopts').classList.add('visible');
+    } else if (prog === 'sprint') {
+      document.querySelector('input[value="sprint"]').checked = true;
+      document.getElementById('opt-sprint').classList.add('selected');
+      document.getElementById('sprint-subopts').classList.add('visible');
+    }
+
+    // Program card interactivity
+    document.querySelectorAll('.program-option input[type="radio"]').forEach(function(radio) {
+      radio.addEventListener('change', function() {
+        document.querySelectorAll('.program-option').forEach(function(el) { el.classList.remove('selected'); });
+        document.querySelectorAll('.sub-options').forEach(function(el) { el.classList.remove('visible'); });
+        this.closest('.program-option').classList.add('selected');
+        if (this.value === 'oncall') document.getElementById('oncall-subopts').classList.add('visible');
+        if (this.value === 'sprint') document.getElementById('sprint-subopts').classList.add('visible');
+      });
+    });
+
+    // Sub-option interactivity
+    document.querySelectorAll('.sub-option input[type="radio"]').forEach(function(radio) {
+      radio.addEventListener('change', function() {
+        var parent = this.closest('.sub-options');
+        parent.querySelectorAll('.sub-option').forEach(function(el) { el.classList.remove('selected'); });
+        this.closest('.sub-option').classList.add('selected');
+      });
+    });
+
+    // Form submission → notify Jeanne via mailto + show thank you
+    document.getElementById('submitBtn').addEventListener('click', function() {
+      var fname = document.getElementById('fname').value.trim();
+      var email = document.getElementById('email').value.trim();
+      var program = document.querySelector('input[name="program"]:checked');
+
+      if (!fname || !email || !program) {
+        alert('Please fill in your name, email, and choose a program.');
+        return;
+      }
+
+      var lname   = document.getElementById('lname').value.trim();
+      var company = document.getElementById('company').value.trim();
+      var context = document.getElementById('context').value.trim();
+      var phone   = document.getElementById('phone').value.trim();
+      var tier    = '';
+      var tierRadio = document.querySelector('input[name="oncall-tier"]:checked') ||
+                      document.querySelector('input[name="sprint-tier"]:checked');
+      if (tierRadio) tier = tierRadio.value;
+
+      var subject = encodeURIComponent('New Reservation: ' + program.value + (tier ? ' / ' + tier : ''));
+      var body = encodeURIComponent(
+        'Name: ' + fname + ' ' + lname + '\n' +
+        'Email: ' + email + '\n' +
+        'Phone / Preferred time: ' + (phone || 'not provided') + '\n' +
+        'Company: ' + (company || 'not provided') + '\n' +
+        'Program: ' + program.value + (tier ? ' / ' + tier : '') + '\n\n' +
+        'Context:\n' + (context || 'not provided')
+      );
+
+      // Save to Google Sheet
+      saveToSheet({
+        type: 'reservation',
+        fname: fname, lname: lname,
+        email: email, phone: phone,
+        company: company,
+        program: program.value, tier: tier,
+        context: context
+      });
+
+      window.location.href = 'mailto:jeanne@authentic-intel.co?subject=' + subject + '&body=' + body;
+
+      // Show thank you panel
+      document.getElementById('contactForm').style.display = 'none';
+      document.querySelector('.program-selector').style.display = 'none';
+      document.getElementById('thankYou').classList.add('visible');
+    });
+
+    // "Not ready" follow-up submission
+    document.getElementById('notReadyBtn').addEventListener('click', function() {
+      var contact = document.getElementById('notReadyContact').value.trim();
+      if (!contact) {
+        alert('Please enter your email or phone number.');
+        return;
+      }
+      // Save to Google Sheet
+      saveToSheet({
+        type: 'follow-up',
+        contact: contact
+      });
+
+      var subject = encodeURIComponent('Follow-up request: Not ready yet');
+      var body = encodeURIComponent('Contact (email or phone): ' + contact + '\n\nThis person is not ready now but wants a follow-up later this year.');
+      window.location.href = 'mailto:jeanne@authentic-intel.co?subject=' + subject + '&body=' + body;
+      document.getElementById('notReadyContact').style.display = 'none';
+      document.getElementById('notReadyBtn').style.display = 'none';
+      document.getElementById('notReadyThanks').style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>
