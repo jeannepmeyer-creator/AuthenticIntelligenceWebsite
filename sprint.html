@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>November 2026 Sprint | Authentic Intelligence LLC</title>
+  <meta name="description" content="Join the November 2026 Leadership Communications Sprint with Jeanne Meyer. Level Up How You Show Up." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: #2D3142; background: #F7F8F5; line-height: 1.6; }
+
+    :root {
+      --green:   #98c739;
+      --dark:    #2D3142;
+      --light:   #F7F8F5;
+    }
+
+    h1, h2, h3 { font-family: 'Kanit', Georgia, serif; line-height: 1.15; font-weight: 600; }
+    .container { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.97);
+      border-bottom: 2px solid var(--green);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px; backdrop-filter: blur(6px);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { height: 36px; width: auto; }
+    .nav-back {
+      font-family: 'Kanit', sans-serif; font-size: 0.85rem; font-weight: 500;
+      color: var(--dark); text-decoration: none; letter-spacing: 0.04em;
+      text-transform: uppercase; display: flex; align-items: center; gap: 0.4rem;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--green); }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      background: linear-gradient(135deg, var(--dark) 0%, #1a1f36 60%, #0d2a2a 100%);
+      padding: 120px 0 70px; text-align: center; position: relative; overflow: hidden;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 600px 300px at 80% 50%, rgba(152,199,57,0.12) 0%, transparent 70%);
+    }
+    .page-header-inner { position: relative; z-index: 1; }
+    .page-eyebrow {
+      font-family: 'Kanit', sans-serif; font-size: 0.75rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 1rem;
+    }
+    .page-header h1 { font-size: clamp(1.8rem, 4.5vw, 3rem); color: #fff; margin-bottom: 1rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+    .page-header p { color: rgba(255,255,255,0.8); font-size: 1.05rem; max-width: 600px; margin: 0 auto; line-height: 1.75; }
+
+    /* ── MAIN SECTION ── */
+    .sprint-section { padding: 60px 0 90px; }
+
+    /* What's included */
+    .includes-card {
+      background: #fff; border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+      padding: 2.5rem; margin-bottom: 2rem;
+      border-top: 4px solid var(--green);
+    }
+    .includes-card h2 { font-size: 1.3rem; color: var(--dark); margin-bottom: 1.25rem; }
+    .includes-list { list-style: none; }
+    .includes-list li {
+      font-size: 0.97rem; color: #444; padding: 0.5rem 0;
+      padding-left: 1.5rem; position: relative; line-height: 1.55;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .includes-list li:last-child { border-bottom: none; }
+    .includes-list li::before {
+      content: '✓'; position: absolute; left: 0;
+      color: var(--green); font-weight: 700;
+    }
+
+    /* Contact form */
+    .contact-form {
+      background: #fff; border-radius: 12px;
+      padding: 2.5rem; box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    }
+    .contact-form h2 { font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--dark); }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1rem; }
+    .form-group label { font-size: 0.85rem; font-weight: 600; color: var(--dark); }
+    .form-group input, .form-group textarea {
+      padding: 0.75rem 1rem; border: 1.5px solid #ddd; border-radius: 6px;
+      font-family: 'Inter', sans-serif; font-size: 0.95rem; color: var(--dark);
+      transition: border-color 0.2s; background: #fff;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none; border-color: var(--green);
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-note { font-size: 0.78rem; color: #999; margin-top: 0.25rem; }
+
+    .submit-btn {
+      display: block; width: 100%; padding: 1rem;
+      background: var(--green); color: #fff;
+      border: none; border-radius: 6px; cursor: pointer;
+      font-family: 'Kanit', sans-serif; font-size: 1.05rem; font-weight: 600;
+      letter-spacing: 0.03em; transition: background 0.2s, transform 0.15s;
+      margin-top: 0.5rem;
+    }
+    .submit-btn:hover { background: #82ac2f; transform: translateY(-1px); }
+
+    /* Thank you state */
+    .thank-you { display: none; text-align: center; padding: 3rem 2rem; }
+    .thank-you.visible { display: block; }
+    .thank-you .ty-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .thank-you h2 { font-size: 2rem; color: var(--dark); margin-bottom: 0.75rem; }
+    .thank-you p { color: #555; font-size: 1rem; margin-bottom: 1.5rem; max-width: 440px; margin-left: auto; margin-right: auto; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark); padding: 2rem; text-align: center;
+      font-size: 0.85rem; color: rgba(255,255,255,0.45);
+    }
+    footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    footer a:hover { color: var(--green); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .form-row { grid-template-columns: 1fr; }
+      .contact-form { padding: 1.75rem 1.25rem; }
+      .includes-card { padding: 1.75rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="Authentic Intelligence LLC" />
+    </a>
+    <a href="landing.html" class="nav-back">← Back to Programs</a>
+  </nav>
+
+  <!-- ─── HEADER ─── -->
+  <div class="page-header">
+    <div class="container page-header-inner">
+      <p class="page-eyebrow">November 2026 Leadership Communications Sprint</p>
+      <h1>Level Up How You Show Up November 2026 Sprint</h1>
+      <p>You know your stuff. Make sure the room knows it, too. Bet on yourself with strategies and frameworks to nail your next presentation, drive home a point or crush a pitch. Build clarity and presence through group practice, personal attention and a customized app for continued practice.</p>
+    </div>
+  </div>
+
+  <!-- ─── SPRINT SECTION ─── -->
+  <section class="sprint-section">
+    <div class="container">
+
+      <!-- What's included -->
+      <div class="includes-card">
+        <h2>Your Sprint includes</h2>
+        <ul class="includes-list">
+          <li>Two live, one-hour workshops on Zoom with Jeanne Meyer.</li>
+          <li>Two private, 30-minute 1:1 sessions to work on a particular challenge or hone a skill of your choice.</li>
+          <li>A workbook to support your practice.</li>
+          <li>Your own customized Gravitas Gauge app that listens and gives feedback and actionable advice to help you improve.</li>
+        </ul>
+      </div>
+
+      <!-- Registration Form -->
+      <div class="contact-form" id="contactForm">
+        <h2>Join the Sprint Cohort</h2>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First Name *</label>
+            <input type="text" id="fname" placeholder="Jane" required />
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name *</label>
+            <input type="text" id="lname" placeholder="Smith" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" placeholder="jane@company.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="company">Company / Organization</label>
+          <input type="text" id="company" placeholder="Your company or role" />
+        </div>
+
+        <div class="form-group">
+          <label for="context">What are you working on? <span style="font-weight:400;">(optional but helpful)</span></label>
+          <textarea id="context" placeholder="A sentence or two about what you're working on or what you'd like to improve."></textarea>
+          <span class="form-note">This helps Jeanne tailor the sprint to the group.</span>
+        </div>
+
+        <button class="submit-btn" id="submitBtn" type="button">Join the Sprint Cohort →</button>
+      </div>
+
+      <!-- Thank You State -->
+      <div class="thank-you" id="thankYou">
+        <div class="ty-icon">🎉</div>
+        <h2>You're in!</h2>
+        <p>Jeanne will be in touch with next steps and everything you need to get ready for the sprint.</p>
+        <a href="index.html" style="display:inline-block; margin-top:1rem; padding:0.85rem 2rem; background:var(--green); color:#fff; border-radius:4px; font-weight:600; text-decoration:none;">← Back to Main Site</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <p>© 2026 Authentic Intelligence LLC &nbsp;·&nbsp; <a href="mailto:jeanne@authentic-intel.co">jeanne@authentic-intel.co</a> &nbsp;·&nbsp; <a href="index.html">Main Site</a></p>
+  </footer>
+
+  <script>
+    var SHEET_URL = 'https://script.google.com/macros/s/AKfycbzg2G8Bfhqs4xi_oF7rdvexp79p09PGqoyXKooaTIf2G2yVviPXVpvp-58gCAi10YpC/exec';
+
+    function saveToSheet(data) {
+      if (!SHEET_URL || SHEET_URL === 'PASTE_YOUR_WEB_APP_URL_HERE') return;
+      fetch(SHEET_URL, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).catch(function() {});
+    }
+
+    document.getElementById('submitBtn').addEventListener('click', function() {
+      var fname = document.getElementById('fname').value.trim();
+      var email = document.getElementById('email').value.trim();
+
+      if (!fname || !email) {
+        alert('Please fill in your name and email address.');
+        return;
+      }
+
+      var lname   = document.getElementById('lname').value.trim();
+      var company = document.getElementById('company').value.trim();
+      var context = document.getElementById('context').value.trim();
+
+      saveToSheet({
+        type: 'sprint-registration',
+        fname: fname, lname: lname,
+        email: email, company: company,
+        program: 'November 2026 Sprint',
+        context: context
+      });
+
+      var subject = encodeURIComponent('New Sprint Registration: ' + fname + ' ' + lname);
+      var body = encodeURIComponent(
+        'Name: ' + fname + ' ' + lname + '\n' +
+        'Email: ' + email + '\n' +
+        'Company: ' + (company || 'not provided') + '\n' +
+        'Program: November 2026 Leadership Communications Sprint\n\n' +
+        'What they\'re working on:\n' + (context || 'not provided')
+      );
+
+      window.location.href = 'mailto:jeanne@authentic-intel.co?subject=' + subject + '&body=' + body;
+
+      document.getElementById('contactForm').style.display = 'none';
+      document.getElementById('thankYou').classList.add('visible');
+    });
+  </script>
+
+</body>
+</html>
