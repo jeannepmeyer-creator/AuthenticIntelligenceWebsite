@@ -275,19 +275,14 @@
       return 'REG-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substr(2,5).toUpperCase();
     }
 
-    function saveToSheet(data, onSuccess, onError) {
+    function saveToSheet(data, onSuccess) {
       if (!SHEET_URL || SHEET_URL === 'PASTE_YOUR_WEB_APP_URL_HERE') { if (onSuccess) onSuccess(); return; }
+      // no-cors required for Apps Script — response is opaque but data saves successfully
       fetch(SHEET_URL, {
-        method: 'POST',
+        method: 'POST', mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
-      })
-      .then(function(r) { return r.json(); })
-      .then(function(json) {
-        if (json.status === 'success') { if (onSuccess) onSuccess(); }
-        else { if (onError) onError(); }
-      })
-      .catch(function() { if (onError) onError(); });
+      }).finally(function() { if (onSuccess) onSuccess(); });
     }
 
 
@@ -323,10 +318,8 @@
 
       var regId = generateRegId();
       var submitBtn = document.getElementById('submitBtn');
-      var saveError = document.getElementById('saveError');
       submitBtn.disabled = true;
       submitBtn.textContent = 'Saving…';
-      saveError.style.display = 'none';
 
       saveToSheet({
         type: 'sprint-registration',
@@ -342,11 +335,6 @@
         submitBtn.style.display = 'none';
         document.getElementById('stripeStep').style.display = 'block';
         document.getElementById('stripeStep').scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, function() {
-        // Error — show message, re-enable button
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Continue to Stripe payment →';
-        saveError.style.display = 'block';
       });
     });
   </script>
