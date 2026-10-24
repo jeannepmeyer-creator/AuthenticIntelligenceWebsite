@@ -270,9 +270,6 @@
       var email = document.getElementById('notifyEmail').value.trim();
       if (!email) { alert('Please enter your email address.'); return; }
       saveToSheet({ type: 'notify', email: email });
-      var subject = encodeURIComponent('Notify me: future workshops');
-      var body = encodeURIComponent('Email: ' + email + '\n\nThis person wants to be notified about future workshops.');
-      window.location.href = 'mailto:jeanne@authentic-intel.co?subject=' + subject + '&body=' + body;
       document.getElementById('notifyEmail').style.display = 'none';
       document.getElementById('notifySubmitBtn').style.display = 'none';
       document.getElementById('notifyThanks').style.display = 'block';
@@ -298,17 +295,6 @@
         program: 'November 2026 Sprint',
         context: context
       });
-
-      var subject = encodeURIComponent('New Sprint Registration: ' + fname + ' ' + lname);
-      var body = encodeURIComponent(
-        'Name: ' + fname + ' ' + lname + '\n' +
-        'Email: ' + email + '\n' +
-        'Company: ' + (company || 'not provided') + '\n' +
-        'Program: November 2026 Leadership Communications Sprint\n\n' +
-        'What they\'re working on:\n' + (context || 'not provided')
-      );
-
-      window.location.href = 'mailto:jeanne@authentic-intel.co?subject=' + subject + '&body=' + body;
 
       // Trigger Stripe checkout
       var wrapper = document.getElementById('stripeBtnWrapper');
