@@ -208,17 +208,15 @@
           <span class="form-note">This helps Jeanne tailor the sprint to the group.</span>
         </div>
 
-        <!-- Lock in + Stripe side by side -->
+        <!-- Lock in → triggers hidden Stripe button -->
         <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-        <div style="display:flex; align-items:center; gap:1rem; flex-wrap:wrap; margin-top:0.5rem;">
-          <button class="submit-btn" id="submitBtn" type="button" style="flex:0 1 auto; width:auto; white-space:nowrap;">Lock in your spot. Complete your registration and payment here &rarr;</button>
-          <div id="stripeBtnWrapper">
-            <stripe-buy-button
-              id="stripeBuyBtn"
-              buy-button-id="buy_btn_1UU4o3GGl6MByl55tpZ8eCR0"
-              publishable-key="pk_live_51RRfizGGl6MByl55Som7hGfXn9C4JfC48h66JbesMoGkSUZb9PM5tdIWiQa4dlY1dSPE9IDmBdgZdOTh5IT60MiM00KnfVPgxN"
-            ></stripe-buy-button>
-          </div>
+        <button class="submit-btn" id="submitBtn" type="button" style="width:100%; margin-top:0.5rem;">Lock in your spot. Complete your registration and payment here &rarr;</button>
+        <div style="position:absolute; opacity:0; pointer-events:none; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+          <stripe-buy-button
+            id="stripeBuyBtn"
+            buy-button-id="buy_btn_1UU4o3GGl6MByl55tpZ8eCR0"
+            publishable-key="pk_live_51RRfizGGl6MByl55Som7hGfXn9C4JfC48h66JbesMoGkSUZb9PM5tdIWiQa4dlY1dSPE9IDmBdgZdOTh5IT60MiM00KnfVPgxN"
+          ></stripe-buy-button>
         </div>
 
         <!-- Notify me -->
@@ -270,6 +268,7 @@
       }).catch(function() {});
     }
 
+
     // "Notify me" toggle and submission
     document.getElementById('notifyBtn').addEventListener('click', function() {
       var f = document.getElementById('notifyForm');
@@ -306,15 +305,16 @@
         context: context
       });
 
-      // Trigger Stripe checkout
-      var wrapper = document.getElementById('stripeBtnWrapper');
-      wrapper.style.display = 'block';
+      // Trigger Stripe checkout (hidden button)
       var stripeBtn = document.getElementById('stripeBuyBtn');
-      if (stripeBtn && stripeBtn.shadowRoot) {
-        var inner = stripeBtn.shadowRoot.querySelector('button');
-        if (inner) inner.click();
-      } else {
-        stripeBtn.click();
+      if (stripeBtn) {
+        setTimeout(function() {
+          if (stripeBtn.shadowRoot) {
+            var inner = stripeBtn.shadowRoot.querySelector('button');
+            if (inner) { inner.click(); return; }
+          }
+          stripeBtn.click();
+        }, 100);
       }
     });
   </script>
