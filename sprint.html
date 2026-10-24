@@ -208,28 +208,37 @@
           <span class="form-note">This helps Jeanne tailor the sprint to the group.</span>
         </div>
 
-        <button class="submit-btn" id="submitBtn" type="button">Lock in your spot. Complete your sprint registration here.</button>
+        <!-- Lock in + Stripe side by side -->
+        <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+        <div style="display:flex; align-items:center; gap:1rem; flex-wrap:wrap; margin-top:0.5rem;">
+          <button class="submit-btn" id="submitBtn" type="button" style="flex:0 1 auto; width:auto; white-space:nowrap;">Lock in your spot. Complete your registration and payment here &rarr;</button>
+          <div id="stripeBtnWrapper">
+            <stripe-buy-button
+              id="stripeBuyBtn"
+              buy-button-id="buy_btn_1UU4o3GGl6MByl55tpZ8eCR0"
+              publishable-key="pk_live_51RRfizGGl6MByl55Som7hGfXn9C4JfC48h66JbesMoGkSUZb9PM5tdIWiQa4dlY1dSPE9IDmBdgZdOTh5IT60MiM00KnfVPgxN"
+            ></stripe-buy-button>
+          </div>
+        </div>
 
-        <div style="text-align:center; margin-top:0.85rem;">
-          <button id="notifyBtn" type="button" style="background:none; border:none; color:#888; font-size:0.85rem; cursor:pointer; text-decoration:underline; font-family:'Inter',sans-serif;">Notify me about future workshops.</button>
+        <!-- Notify me -->
+        <div style="margin-top:1.5rem;">
+          <button id="notifyBtn" type="button" style="background:none; border:none; color:var(--dark); font-size:1rem; font-weight:600; cursor:pointer; font-family:'Inter',sans-serif; text-decoration:underline; padding:0;">I can't make it this time, but notify me about future workshops.</button>
         </div>
         <div id="notifyForm" style="display:none; margin-top:1rem; background:var(--light); border-radius:8px; padding:1rem 1.25rem;">
-          <p style="font-size:0.88rem; color:#555; margin-bottom:0.75rem;">Leave your email and we'll let you know about upcoming workshops.</p>
-          <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
-            <input type="email" id="notifyEmail" placeholder="jane@company.com" style="flex:1; min-width:200px; padding:0.6rem 0.9rem; border:1.5px solid #ddd; border-radius:6px; font-size:0.9rem; font-family:'Inter',sans-serif;" />
-            <button id="notifySubmitBtn" type="button" style="padding:0.6rem 1.25rem; background:var(--dark); color:#fff; border:none; border-radius:6px; font-size:0.88rem; font-weight:600; cursor:pointer; font-family:'Kanit',sans-serif;">Notify me →</button>
+          <p style="font-size:0.9rem; color:#555; margin-bottom:0.75rem;">Leave your name and email and we'll let you know about upcoming workshops.</p>
+          <div class="form-row" style="margin-bottom:0.75rem;">
+            <div class="form-group" style="margin-bottom:0;">
+              <label for="notifyName" style="font-size:0.85rem; font-weight:600; color:var(--dark);">Your name</label>
+              <input type="text" id="notifyName" placeholder="Jane Smith" style="padding:0.6rem 0.9rem; border:1.5px solid #ddd; border-radius:6px; font-size:0.9rem; font-family:'Inter',sans-serif;" />
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label for="notifyEmail" style="font-size:0.85rem; font-weight:600; color:var(--dark);">Email address</label>
+              <input type="email" id="notifyEmail" placeholder="jane@company.com" style="padding:0.6rem 0.9rem; border:1.5px solid #ddd; border-radius:6px; font-size:0.9rem; font-family:'Inter',sans-serif;" />
+            </div>
           </div>
-          <p id="notifyThanks" style="display:none; margin-top:0.75rem; font-size:0.88rem; color:var(--dark); font-weight:600;">✓ Got it — we'll be in touch!</p>
-        </div>
-
-        <!-- Stripe buy button hidden — triggered programmatically on submit -->
-        <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-        <div id="stripeBtnWrapper" style="display:none;">
-          <stripe-buy-button
-            id="stripeBuyBtn"
-            buy-button-id="buy_btn_1UU4o3GGl6MByl55tpZ8eCR0"
-            publishable-key="pk_live_51RRfizGGl6MByl55Som7hGfXn9C4JfC48h66JbesMoGkSUZb9PM5tdIWiQa4dlY1dSPE9IDmBdgZdOTh5IT60MiM00KnfVPgxN"
-          ></stripe-buy-button>
+          <button id="notifySubmitBtn" type="button" style="padding:0.6rem 1.25rem; background:var(--dark); color:#fff; border:none; border-radius:6px; font-size:0.9rem; font-weight:600; cursor:pointer; font-family:'Kanit',sans-serif;">Notify me →</button>
+          <p id="notifyThanks" style="display:none; margin-top:0.75rem; font-size:0.9rem; color:var(--dark); font-weight:600;">✓ Got it — we'll be in touch!</p>
         </div>
       </div>
 
@@ -267,10 +276,11 @@
       f.style.display = f.style.display === 'none' ? 'block' : 'none';
     });
     document.getElementById('notifySubmitBtn').addEventListener('click', function() {
+      var name = document.getElementById('notifyName').value.trim();
       var email = document.getElementById('notifyEmail').value.trim();
       if (!email) { alert('Please enter your email address.'); return; }
-      saveToSheet({ type: 'notify', email: email });
-      document.getElementById('notifyEmail').style.display = 'none';
+      saveToSheet({ type: 'notify', name: name, email: email });
+      document.getElementById('notifyForm').querySelectorAll('input').forEach(function(el){ el.style.display = 'none'; });
       document.getElementById('notifySubmitBtn').style.display = 'none';
       document.getElementById('notifyThanks').style.display = 'block';
     });
