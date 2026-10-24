@@ -208,17 +208,15 @@
           <span class="form-note">This helps Jeanne tailor the sprint to the group.</span>
         </div>
 
-        <!-- Lock in + Stripe side by side -->
+        <!-- Lock in → triggers hidden Stripe button -->
         <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-        <div style="display:flex; align-items:center; gap:1rem; flex-wrap:wrap; margin-top:0.5rem;">
-          <button class="submit-btn" id="submitBtn" type="button" style="flex:0 1 auto; width:auto; white-space:nowrap;">Lock in your spot. Complete your registration and payment here &rarr;</button>
-          <div id="stripeBtnWrapper">
-            <stripe-buy-button
-              id="stripeBuyBtn"
-              buy-button-id="buy_btn_1UU4o3GGl6MByl55tpZ8eCR0"
-              publishable-key="pk_live_51RRfizGGl6MByl55Som7hGfXn9C4JfC48h66JbesMoGkSUZb9PM5tdIWiQa4dlY1dSPE9IDmBdgZdOTh5IT60MiM00KnfVPgxN"
-            ></stripe-buy-button>
-          </div>
+        <button class="submit-btn" id="submitBtn" type="button" style="width:100%; margin-top:0.5rem;">Lock in your spot. Complete your registration and payment here &rarr;</button>
+        <div style="position:absolute; opacity:0; pointer-events:none; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+          <stripe-buy-button
+            id="stripeBuyBtn"
+            buy-button-id="buy_btn_1UU4o3GGl6MByl55tpZ8eCR0"
+            publishable-key="pk_live_51RRfizGGl6MByl55Som7hGfXn9C4JfC48h66JbesMoGkSUZb9PM5tdIWiQa4dlY1dSPE9IDmBdgZdOTh5IT60MiM00KnfVPgxN"
+          ></stripe-buy-button>
         </div>
 
         <!-- Notify me -->
@@ -258,7 +256,13 @@
     <p>© 2026 Authentic Intelligence LLC &nbsp;·&nbsp; <a href="mailto:jeanne@authentic-intel.co">jeanne@authentic-intel.co</a> &nbsp;·&nbsp; <a href="index.html">Main Site</a></p>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
+    // EmailJS — replace these with your real IDs after signing up at emailjs.com
+    var EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
+    var EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+    var EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+
     var SHEET_URL = 'https://script.google.com/macros/s/AKfycbzg2G8Bfhqs4xi_oF7rdvexp79p09PGqoyXKooaTIf2G2yVviPXVpvp-58gCAi10YpC/exec';
 
     function saveToSheet(data) {
@@ -268,6 +272,12 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       }).catch(function() {});
+    }
+
+    function sendEmailNotification(params) {
+      if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') return; // not yet configured
+      emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params).catch(function(){});
     }
 
     // "Notify me" toggle and submission
@@ -280,6 +290,11 @@
       var email = document.getElementById('notifyEmail').value.trim();
       if (!email) { alert('Please enter your email address.'); return; }
       saveToSheet({ type: 'notify', name: name, email: email });
+      sendEmailNotification({
+        to_email: 'jeanne@authentic-intel.co',
+        subject: 'Future workshop notification request',
+        message: 'Name: ' + name + '\nEmail: ' + email + '\nType: Notify me about future workshops'
+      });
       document.getElementById('notifyForm').querySelectorAll('input').forEach(function(el){ el.style.display = 'none'; });
       document.getElementById('notifySubmitBtn').style.display = 'none';
       document.getElementById('notifyThanks').style.display = 'block';
@@ -306,15 +321,26 @@
         context: context
       });
 
-      // Trigger Stripe checkout
-      var wrapper = document.getElementById('stripeBtnWrapper');
-      wrapper.style.display = 'block';
+      sendEmailNotification({
+        to_email: 'jeanne@authentic-intel.co',
+        subject: 'New Sprint Registration: ' + fname + ' ' + lname,
+        message: 'Name: ' + fname + ' ' + lname +
+                 '\nEmail: ' + email +
+                 '\nCompany: ' + company +
+                 '\nContext: ' + context +
+                 '\nProgram: November 2026 Sprint'
+      });
+
+      // Trigger Stripe checkout (hidden button)
       var stripeBtn = document.getElementById('stripeBuyBtn');
-      if (stripeBtn && stripeBtn.shadowRoot) {
-        var inner = stripeBtn.shadowRoot.querySelector('button');
-        if (inner) inner.click();
-      } else {
-        stripeBtn.click();
+      if (stripeBtn) {
+        setTimeout(function() {
+          if (stripeBtn.shadowRoot) {
+            var inner = stripeBtn.shadowRoot.querySelector('button');
+            if (inner) { inner.click(); return; }
+          }
+          stripeBtn.click();
+        }, 100);
       }
     });
   </script>
