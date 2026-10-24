@@ -208,11 +208,14 @@
           <span class="form-note">This helps Jeanne tailor the sprint to the group.</span>
         </div>
 
-        <!-- Lock in → triggers hidden Stripe button -->
+        <!-- Step 1: Lock in (validates form + saves info) -->
         <script async src="https://js.stripe.com/v3/buy-button.js"></script>
         <button class="submit-btn" id="submitBtn" type="button" style="width:100%; margin-top:0.5rem;">Lock in your spot. Complete your registration and payment here &rarr;</button>
         <p id="formError" style="display:none; color:#c0392b; font-size:0.9rem; margin-top:0.5rem;">Please fill in your first name and email address before continuing.</p>
-        <div style="position:fixed; left:-9999px; top:0;">
+
+        <!-- Step 2: Payment (revealed after Lock in) -->
+        <div id="stripeStep" style="display:none; margin-top:1.25rem; padding:1rem 1.25rem; background:#f0f7e6; border-radius:8px; border:1.5px solid var(--green);">
+          <p style="font-size:0.95rem; font-weight:600; color:var(--dark); margin-bottom:0.75rem;">✓ Registration saved! Now complete your payment to secure your spot:</p>
           <stripe-buy-button
             id="stripeBuyBtn"
             buy-button-id="buy_btn_1UU4o3GGl6MByl55tpZ8eCR0"
@@ -308,21 +311,10 @@
         context: context
       });
 
-      // Trigger Stripe checkout
-      var stripeBtn = document.getElementById('stripeBuyBtn');
-      if (stripeBtn) {
-        setTimeout(function() {
-          // Try shadow DOM button first
-          try {
-            if (stripeBtn.shadowRoot) {
-              var inner = stripeBtn.shadowRoot.querySelector('button');
-              if (inner) { inner.click(); return; }
-            }
-          } catch(ex) {}
-          // Fallback: dispatch MouseEvent
-          stripeBtn.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
-        }, 200);
-      }
+      // Reveal Stripe payment step
+      document.getElementById('submitBtn').style.display = 'none';
+      document.getElementById('stripeStep').style.display = 'block';
+      document.getElementById('stripeStep').scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
   </script>
 
