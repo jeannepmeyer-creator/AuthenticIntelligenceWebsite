@@ -216,11 +216,13 @@
         <!-- Step 2: Payment (revealed after Lock in) -->
         <div id="stripeStep" style="display:none; margin-top:1.25rem; padding:1rem 1.25rem; background:#f0f7e6; border-radius:8px; border:1.5px solid var(--green);">
           <p style="font-size:0.95rem; font-weight:600; color:var(--dark); margin-bottom:0.75rem;">✓ Registration saved! Now complete your payment to secure your spot:</p>
-          <stripe-buy-button
-            id="stripeBuyBtn"
-            buy-button-id="buy_btn_1UU4o3GGl6MByl55tpZ8eCR0"
-            publishable-key="pk_live_51RRfizGGl6MByl55Som7hGfXn9C4JfC48h66JbesMoGkSUZb9PM5tdIWiQa4dlY1dSPE9IDmBdgZdOTh5IT60MiM00KnfVPgxN"
-          ></stripe-buy-button>
+          <div style="display:flex; justify-content:center;">
+            <stripe-buy-button
+              id="stripeBuyBtn"
+              buy-button-id="buy_btn_1UU4o3GGl6MByl55tpZ8eCR0"
+              publishable-key="pk_live_51RRfizGGl6MByl55Som7hGfXn9C4JfC48h66JbesMoGkSUZb9PM5tdIWiQa4dlY1dSPE9IDmBdgZdOTh5IT60MiM00KnfVPgxN"
+            ></stripe-buy-button>
+          </div>
         </div>
 
         <!-- Notify me -->
