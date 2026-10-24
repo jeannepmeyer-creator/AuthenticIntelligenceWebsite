@@ -211,7 +211,8 @@
         <!-- Lock in → triggers hidden Stripe button -->
         <script async src="https://js.stripe.com/v3/buy-button.js"></script>
         <button class="submit-btn" id="submitBtn" type="button" style="width:100%; margin-top:0.5rem;">Lock in your spot. Complete your registration and payment here &rarr;</button>
-        <div style="position:absolute; opacity:0; pointer-events:none; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+        <p id="formError" style="display:none; color:#c0392b; font-size:0.9rem; margin-top:0.5rem;">Please fill in your first name and email address before continuing.</p>
+        <div style="position:fixed; left:-9999px; top:0;">
           <stripe-buy-button
             id="stripeBuyBtn"
             buy-button-id="buy_btn_1UU4o3GGl6MByl55tpZ8eCR0"
@@ -288,10 +289,12 @@
       var fname = document.getElementById('fname').value.trim();
       var email = document.getElementById('email').value.trim();
 
+      var errorEl = document.getElementById('formError');
       if (!fname || !email) {
-        alert('Please fill in your name and email address.');
+        errorEl.style.display = 'block';
         return;
       }
+      errorEl.style.display = 'none';
 
       var lname   = document.getElementById('lname').value.trim();
       var company = document.getElementById('company').value.trim();
@@ -305,16 +308,20 @@
         context: context
       });
 
-      // Trigger Stripe checkout (hidden button)
+      // Trigger Stripe checkout
       var stripeBtn = document.getElementById('stripeBuyBtn');
       if (stripeBtn) {
         setTimeout(function() {
-          if (stripeBtn.shadowRoot) {
-            var inner = stripeBtn.shadowRoot.querySelector('button');
-            if (inner) { inner.click(); return; }
-          }
-          stripeBtn.click();
-        }, 100);
+          // Try shadow DOM button first
+          try {
+            if (stripeBtn.shadowRoot) {
+              var inner = stripeBtn.shadowRoot.querySelector('button');
+              if (inner) { inner.click(); return; }
+            }
+          } catch(ex) {}
+          // Fallback: dispatch MouseEvent
+          stripeBtn.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+        }, 200);
       }
     });
   </script>
