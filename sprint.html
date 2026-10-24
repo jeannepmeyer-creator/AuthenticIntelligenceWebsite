@@ -210,18 +210,24 @@
 
         <!-- Step 1: Lock in (validates form + saves info) -->
         <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-        <button class="submit-btn" id="submitBtn" type="button" style="width:100%; margin-top:0.5rem;">Lock in your spot. Complete your registration and payment here &rarr;</button>
+        <button class="submit-btn" id="submitBtn" type="button" style="width:100%; margin-top:0.5rem;">Continue to Stripe payment &rarr;</button>
         <p id="formError" style="display:none; color:#c0392b; font-size:0.9rem; margin-top:0.5rem;">Please fill in your first name and email address before continuing.</p>
+        <p id="saveError" style="display:none; color:#c0392b; font-size:0.9rem; margin-top:0.5rem;">Something went wrong saving your registration. Please try again or email jeanne@authentic-intel.co.</p>
 
-        <!-- Step 2: Payment (revealed after Lock in) -->
-        <div id="stripeStep" style="display:none; margin-top:1.25rem; padding:1rem 1.25rem; background:#f0f7e6; border-radius:8px; border:1.5px solid var(--green);">
-          <p style="font-size:0.95rem; font-weight:600; color:var(--dark); margin-bottom:0.75rem;">✓ Registration saved! Now complete your payment to secure your spot:</p>
-          <div style="display:flex; justify-content:center;">
+        <!-- Step 2: Payment (revealed after confirmed save) -->
+        <div id="stripeStep" style="display:none; margin-top:1.25rem; padding:1.25rem 1.5rem; background:#f0f7e6; border-radius:8px; border:1.5px solid var(--green);">
+          <p style="font-size:1rem; font-weight:700; color:var(--dark); margin-bottom:0.5rem;">✓ Registration saved! Now complete your payment to secure your spot:</p>
+          <div style="display:flex; justify-content:center; margin-bottom:1rem;">
             <stripe-buy-button
               id="stripeBuyBtn"
               buy-button-id="buy_btn_1UU4o3GGl6MByl55tpZ8eCR0"
               publishable-key="pk_live_51RRfizGGl6MByl55Som7hGfXn9C4JfC48h66JbesMoGkSUZb9PM5tdIWiQa4dlY1dSPE9IDmBdgZdOTh5IT60MiM00KnfVPgxN"
             ></stripe-buy-button>
+          </div>
+          <div style="font-size:0.85rem; color:#555; border-top:1px solid #d4e8b0; padding-top:0.85rem; line-height:1.7;">
+            <p style="margin-bottom:0.4rem;"><strong>After payment:</strong> You'll receive a Stripe receipt by email. Jeanne will send your Zoom access link and invite you to schedule your 1:1 coaching session within 48 hours.</p>
+            <p style="margin-bottom:0.4rem;"><strong>Refund policy:</strong> Full refunds for cancellations received before November 2, 2026. No refunds after that date.</p>
+            <p><strong>Privacy:</strong> Your information will only be used to manage your enrollment and will not be shared beyond jeanne@authentic-intel.co.</p>
           </div>
         </div>
 
@@ -265,13 +271,23 @@
   <script>
     var SHEET_URL = 'https://script.google.com/macros/s/AKfycbxRIcJu8fMO7B2wWiBZpe_04DTlwa-FyXHNF9l9UEC5FTDC70R2v-EPzqC6QLZr8nc9/exec';
 
-    function saveToSheet(data) {
-      if (!SHEET_URL || SHEET_URL === 'PASTE_YOUR_WEB_APP_URL_HERE') return;
+    function generateRegId() {
+      return 'REG-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substr(2,5).toUpperCase();
+    }
+
+    function saveToSheet(data, onSuccess, onError) {
+      if (!SHEET_URL || SHEET_URL === 'PASTE_YOUR_WEB_APP_URL_HERE') { if (onSuccess) onSuccess(); return; }
       fetch(SHEET_URL, {
-        method: 'POST', mode: 'no-cors',
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
-      }).catch(function() {});
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(json) {
+        if (json.status === 'success') { if (onSuccess) onSuccess(); }
+        else { if (onError) onError(); }
+      })
+      .catch(function() { if (onError) onError(); });
     }
 
 
@@ -305,18 +321,33 @@
       var company = document.getElementById('company').value.trim();
       var context = document.getElementById('context').value.trim();
 
+      var regId = generateRegId();
+      var submitBtn = document.getElementById('submitBtn');
+      var saveError = document.getElementById('saveError');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Saving…';
+      saveError.style.display = 'none';
+
       saveToSheet({
         type: 'sprint-registration',
+        registration_id: regId,
         fname: fname, lname: lname,
         email: email, company: company,
         program: 'November 2026 Sprint',
-        context: context
+        context: context,
+        payment_status: 'pending',
+        zoom_approved: 'no'
+      }, function() {
+        // Success — registration confirmed, reveal payment step
+        submitBtn.style.display = 'none';
+        document.getElementById('stripeStep').style.display = 'block';
+        document.getElementById('stripeStep').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, function() {
+        // Error — show message, re-enable button
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Continue to Stripe payment →';
+        saveError.style.display = 'block';
       });
-
-      // Reveal Stripe payment step
-      document.getElementById('submitBtn').style.display = 'none';
-      document.getElementById('stripeStep').style.display = 'block';
-      document.getElementById('stripeStep').scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
   </script>
 
