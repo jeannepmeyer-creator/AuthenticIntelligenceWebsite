@@ -355,5 +355,29 @@
     <p>© 2026 Authentic Intelligence LLC &nbsp;·&nbsp; <a href="mailto:jeanne@authentic-intel.co">jeanne@authentic-intel.co</a> &nbsp;·&nbsp; <a href="index.html">Back to main site</a></p>
   </footer>
 
+  <!-- ── SPRINT POPUP ── -->
+  <div id="sprintPopup" style="display:none; position:fixed; bottom:2rem; right:2rem; z-index:999; max-width:320px; background:#fff; border-radius:12px; box-shadow:0 8px 40px rgba(0,0,0,0.18); border-top:4px solid var(--green); padding:1.5rem 1.5rem 1.25rem; font-family:'Inter',sans-serif;">
+    <button id="popupClose" style="position:absolute; top:0.6rem; right:0.75rem; background:none; border:none; font-size:1.2rem; cursor:pointer; color:#888; line-height:1;" aria-label="Close">&times;</button>
+    <p style="font-size:0.72rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--green); margin-bottom:0.4rem;">Register Now</p>
+    <a href="/sprint.html" style="text-decoration:none; color:var(--dark);">
+      <h3 style="font-family:'Kanit',sans-serif; font-size:1.1rem; font-weight:700; line-height:1.2; margin-bottom:0.5rem;">"Level Up How You Show Up"<br>Sprint Workshop</h3>
+    </a>
+    <p style="font-size:0.88rem; color:#555; margin-bottom:0.9rem; line-height:1.5;">Limited spots for November 2026. Increase the impact of how you communicate.</p>
+    <a href="/sprint.html" style="display:block; text-align:center; background:var(--green); color:#fff; font-family:'Kanit',sans-serif; font-weight:600; font-size:0.95rem; padding:0.65rem 1rem; border-radius:6px; text-decoration:none;">Register →</a>
+  </div>
+
+  <script>
+    (function() {
+      var popup = document.getElementById('sprintPopup');
+      var close = document.getElementById('popupClose');
+      if (sessionStorage.getItem('popupDismissed')) return;
+      setTimeout(function() { popup.style.display = 'block'; }, 2500);
+      close.addEventListener('click', function() {
+        popup.style.display = 'none';
+        sessionStorage.setItem('popupDismissed', '1');
+      });
+    })();
+  </script>
+
 </body>
 </html>
